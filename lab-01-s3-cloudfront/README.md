@@ -15,4 +15,4 @@ Desplegar un sitio web estático distribuido globalmente, asegurando que el cont
 - Reduje la latencia de acceso de ~200ms a ~18ms mediante el uso de Edge Locations.
 
 ## Evidencia
-![Resultado Final](./Captura de pantalla 2026-03-16 070808.jpg)
+![Resultado Final](./Web1.jpg)
