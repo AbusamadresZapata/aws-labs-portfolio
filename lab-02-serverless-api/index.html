@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Portfolio - Juan Zarrechea</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            padding: 50px; 
+            background-color: #f4f7f6;
+            color: #232F3E;
+        }
+        .container {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-top: 5px solid #FF9900;
+        }
+        h1 { color: #232F3E; margin-bottom: 10px; }
+        .subtitle { color: #545b64; font-size: 1.1em; margin-bottom: 30px; }
+        
+        .counter-box {
+            background: #232F3E;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .counter-number {
+            display: block;
+            font-size: 3em;
+            font-weight: bold;
+            color: #FF9900;
+        }
+        .badge {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 8px 15px;
+            background: #ecf0f1;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #232F3E;
+            font-weight: bold;
+        }
+        footer { margin-top: 50px; font-size: 0.8em; color: #aab7b8; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>☁️ AWS Cloud Project</h1>
+        <div class="subtitle">Static Website + Serverless Architecture</div>
+        
+        <p>Esta página se sirve globalmente a través de <strong>Amazon CloudFront</strong> con archivos privados en <strong>S3</strong>.</p>
+
+        <div class="counter-box">
+            <span class="counter-number" id="counter">0</span>
+            <span>VISITANTES TOTALES</span>
+        </div>
+
+        <br>
+        <div class="badge">👤 Juan Zarrechea | AWS Practitioner & Architect Student</div>
+    </div>
+
+    <footer>
+        Implementado con: S3 • CloudFront • API Gateway • Lambda • DynamoDB
+    </footer>
+
+    <script>
+        // Tu URL de API Gateway
+        const apiURL = 'https://fl6b0378cg.execute-api.us-east-1.amazonaws.com/visit';
+
+        async function getCounter() {
+            try {
+                // Indicamos al usuario que estamos consultando la nube
+                document.getElementById('counter').innerText = "...";
+                
+                let response = await fetch(apiURL);
+                if (!response.ok) throw new Error('Error en la API');
+                
+                let data = await response.json();
+                
+                // Animación simple para el número
+                document.getElementById('counter').innerText = data.count;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('counter').innerText = "?";
+            }
+        }
+        
+        
+        getCounter();
+    </script>
+</body>
+</html>
