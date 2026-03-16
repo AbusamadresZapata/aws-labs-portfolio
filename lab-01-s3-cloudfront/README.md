@@ -15,4 +15,3 @@ Desplegar un sitio web estático distribuido globalmente, asegurando que el cont
 - Reduje la latencia de acceso de ~200ms a ~18ms mediante el uso de Edge Locations.
 
 ## Evidencia
-*(Aquí puedes pegar una captura de pantalla de tu web funcionando con el dominio de CloudFront)*
