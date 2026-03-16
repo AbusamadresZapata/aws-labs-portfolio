@@ -1,6 +1,3 @@
-Entendido. Aquí tienes la versión profesional del `README.md` sin emojis, enfocada en una redacción técnica y limpia para tu repositorio de GitHub.
-
----
 
 # AWS Cloud Resume Project - Serverless Architecture
 
