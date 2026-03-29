@@ -5,7 +5,7 @@ Aquí encontrarás laboratorios prácticos documentando el despliegue de infraes
 
 ---
 
-##  Stack Tecnológico
+## 🛠️ Stack Tecnológico
 ![AWS](https://img.shields.io/badge/AWS-%23232F3E.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
@@ -13,7 +13,7 @@ Aquí encontrarás laboratorios prácticos documentando el despliegue de infraes
 
 ---
 
-##  Laboratorios Completados
+## 🚀 Laboratorios Completados
 
 ### [Lab 01: Alojamiento Web Estático con S3 y CloudFront](./lab-01-s3-cloudfront)
 * **Objetivo:** Despliegue de un sitio estático con baja latencia global.
@@ -28,15 +28,25 @@ Aquí encontrarás laboratorios prácticos documentando el despliegue de infraes
 * **Servicios:** VPC, EC2, Internet Gateway, Route Tables, NACLs, Security Groups.
 * **Logro:** Validación de comportamiento *Stateless* mediante bloqueo de IP pública local.
 
----
-
-##  Próximos Pasos
-- [ ] Implementación de Auto Scaling y Elastic Load Balancing (ELB).
-- [ ] Infraestructura como Código (IaC) con CloudFormation o Terraform.
-- [ ] Monitoreo y Alertas con CloudWatch y SNS.
+### [Lab 04: Alta Disponibilidad y Auto Scaling (Self-Healing)](./lab-04-ha-autoscaling)
+* **Objetivo:** Implementación de una arquitectura resiliente y elástica en múltiples zonas de disponibilidad.
+* **Servicios:** ALB (Application Load Balancer), ASG (Auto Scaling Group), Launch Templates, Target Groups.
+* **Logro:** Configuración de escalado dinámico por CPU y recuperación automática de instancias.
 
 ---
 
+## 📈 Próximos Pasos
+- [ ] **Lab 05: Seguridad + Auditoría**: Implementación de IAM, CloudTrail y presupuestos (Budgets).
+- [ ] **Lab 06: Pipeline ETL**: Procesamiento de datos con S3, Glue, Athena y QuickSight.
+- [ ] **Lab 07: PDF Digitizer con IA**: Uso de Textract y Lambda para conversión de documentos.
+- [ ] **Infraestructura como Código (IaC)**: Migración de despliegues manuales a Terraform.
+
+---
+
+## 📬 Contacto
+¿Te interesa mi perfil o quieres colaborar?
+
+* **Email:** Juanzarrechea@gmail.com
 ##  Contacto
 ¿Te interesa mi perfil o quieres colaborar?
 
