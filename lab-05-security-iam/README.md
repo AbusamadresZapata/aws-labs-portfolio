@@ -12,9 +12,6 @@ Se eliminó el uso de la cuenta Root para tareas diarias y se implementó una es
 - **MFA Obligatorio**: Activación de autenticación de múltiples factores para todas las identidades administrativas.
 - **Políticas JSON**: Implementación de políticas personalizadas con condiciones de seguridad.
 
-> **Evidencia: Política de Seguridad con Condición MFA**
-> 
-> *Configuración de acceso administrativo condicionado a la presencia de MFA.*
 
 ### 2. Auditoría con CloudTrail
 Configuración de un rastro de auditoría global para monitorear cada acción realizada en la infraestructura:
