@@ -13,7 +13,7 @@ Se eliminó el uso de la cuenta Root para tareas diarias y se implementó una es
 - **Políticas JSON**: Implementación de políticas personalizadas con condiciones de seguridad.
 
 > **Evidencia: Política de Seguridad con Condición MFA**
-> ![Política IAM](./evidencias/politica-iam-json.png)
+> 
 > *Configuración de acceso administrativo condicionado a la presencia de MFA.*
 
 ### 2. Auditoría con CloudTrail
