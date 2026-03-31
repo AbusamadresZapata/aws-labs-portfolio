@@ -33,7 +33,7 @@ Implementación de **AWS Budgets** para evitar sorpresas en la facturación y ma
 > **Evidencia: Estado del Presupuesto**
 > ![AWS Budgets](./evidencias/budget-status.png)
 > *Control de gastos en tiempo real con alertas configuradas.*
-![AWS Budgets](./evidencias/correo.png)
+> ![AWS Budgets](./evidencias/correo.png)
 
 ---
 
