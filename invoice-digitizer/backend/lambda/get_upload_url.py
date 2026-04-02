@@ -6,8 +6,8 @@ from datetime import datetime
 
 s3 = boto3.client('s3', region_name='us-east-1')
 
-BUCKET_RAW     = os.environ['BUCKET_RAW']
-FRONTEND_URL   = os.environ['FRONTEND_URL']
+BUCKET_RAW     = os.environ['invoice-raw-906401006146']
+FRONTEND_URL   = os.environ[' https://main.d11vt37abx4lx9.amplifyapp.com/']
 EXPIRY_SECONDS = 300
 
 

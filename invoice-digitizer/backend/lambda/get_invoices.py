@@ -7,7 +7,7 @@ from boto3.dynamodb.conditions import Key
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 table    = dynamodb.Table('invoices')
 
-FRONTEND_URL = os.environ['FRONTEND_URL']
+FRONTEND_URL = os.environ['https://main.d11vt37abx4lx9.amplifyapp.com/']
 
 
 class DecimalEncoder(json.JSONEncoder):
