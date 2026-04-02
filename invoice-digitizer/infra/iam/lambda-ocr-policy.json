@@ -1,0 +1,41 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadRawImages",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": "arn:aws:s3:::invoice-raw-ACCOUNT-ID/uploads/*"
+    },
+    {
+      "Sid": "WriteProcessedResults",
+      "Effect": "Allow",
+      "Action": ["s3:PutObject"],
+      "Resource": "arn:aws:s3:::invoice-processed-ACCOUNT-ID/results/*"
+    },
+    {
+      "Sid": "RunTextract",
+      "Effect": "Allow",
+      "Action": ["textract:AnalyzeDocument"],
+      "Resource": "*"
+    },
+    {
+      "Sid": "WriteDynamoDB",
+      "Effect": "Allow",
+      "Action": ["dynamodb:PutItem", "dynamodb:UpdateItem"],
+      "Resource": "arn:aws:dynamodb:us-east-1:ACCOUNT-ID:table/invoices"
+    },
+    {
+      "Sid": "PublishSNS",
+      "Effect": "Allow",
+      "Action": ["sns:Publish"],
+      "Resource": "arn:aws:sns:us-east-1:ACCOUNT-ID:invoice-notifications"
+    },
+    {
+      "Sid": "WriteLogs",
+      "Effect": "Allow",
+      "Action": ["logs:CreateLogGroup","logs:CreateLogStream","logs:PutLogEvents"],
+      "Resource": "arn:aws:logs:us-east-1:ACCOUNT-ID:log-group:/aws/lambda/invoice-ocr-processor:*"
+    }
+  ]
+}
