@@ -3,15 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd frontend
+        - cd invoice-digitizer/frontend
         - npm ci
     build:
       commands:
+        - cd invoice-digitizer/frontend
         - npm run build
   artifacts:
-    baseDirectory: frontend/build
+    baseDirectory: invoice-digitizer/frontend/build
     files:
       - '**/*'
   cache:
     paths:
-      - frontend/node_modules/**/*
+      - invoice-digitizer/frontend/node_modules/**/*
