@@ -1,20 +1,16 @@
-// Valores que completas después de crear los servicios en AWS:
-// userPoolId        → Cognito → User Pools → tu pool → Pool ID
-// userPoolClientId  → Cognito → App clients → tu client → Client ID
-// endpoint          → API Gateway → Stages → prod → Invoke URL
-
+// aws-config.js 
 const awsConfig = {
   Auth: {
     Cognito: {
-      region:           'us-east-1',
-      userPoolId:       process.env.REACT_APP_USER_POOL_ID       || 'us-east-1_XXXXXXXXX',
-      userPoolClientId: process.env.REACT_APP_USER_POOL_CLIENT_ID || 'XXXXXXXXXXXXXXXXXXXXXXXXXX',
+      region: 'us-east-1',
+      userPoolId: 'us-east-1_mCuzTN6UV', // ID de tu User Pool
+      userPoolClientId: '6pff2kis3a7strfph3snjnapjd', // App Client ID
     }
   },
   API: {
     REST: {
       InvoiceAPI: {
-        endpoint: process.env.REACT_APP_API_ENDPOINT || 'https://XXXXXXXXXX.execute-api.us-east-1.amazonaws.com/prod',
+        endpoint: 'https://sl2rrcev1b.execute-api.us-east-1.amazonaws.com/prod', // Tu API URL
         region: 'us-east-1',
       }
     }
