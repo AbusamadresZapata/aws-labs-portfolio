@@ -1,0 +1,19 @@
+# Dependencias
+node_modules/
+.pnp
+.pnp.js
+
+# Construcción
+dist/
+build/
+*.zip
+
+# Variables de entorno (SECRETOS)
+.env
+.env.local
+aws-config.js
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
