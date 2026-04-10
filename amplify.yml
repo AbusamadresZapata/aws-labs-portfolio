@@ -3,12 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd invoice-digitizer/frontend
-        - npm ci
+        - nvm use 20
+        - cd invoice-digitizer/frontend && npm install
     build:
       commands:
-        - cd invoice-digitizer/frontend
-        - npm run build
+        - cd invoice-digitizer/frontend && npm run build
   artifacts:
     baseDirectory: invoice-digitizer/frontend/build
     files:
