@@ -4,7 +4,7 @@ frontend:
     preBuild:
       commands:
         - nvm use 20
-        - cd invoice-digitizer/frontend && npm install
+        - npm install --prefix invoice-digitizer/frontend
     build:
       commands:
         - npm run build --prefix invoice-digitizer/frontend
