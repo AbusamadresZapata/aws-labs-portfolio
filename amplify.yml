@@ -7,7 +7,7 @@ frontend:
         - cd invoice-digitizer/frontend && npm install
     build:
       commands:
-        - cd invoice-digitizer/frontend && npm run build
+        - npm run build --prefix invoice-digitizer/frontend
   artifacts:
     baseDirectory: invoice-digitizer/frontend/build
     files:
