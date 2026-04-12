@@ -1,30 +1,49 @@
 import { useState, useEffect, useCallback } from 'react';
 import { fetchAuthSession } from 'aws-amplify/auth';
-import { get, post } from 'aws-amplify/api';
 import InvoiceCard from '../components/InvoiceCard';
 
+const API = process.env.REACT_APP_API_ENDPOINT;
 const POLL_DELAY_MS    = 20000;
 const POLL_INTERVAL_MS = 5000;
 const MAX_POLLS        = 6;
 
+async function getToken() {
+  const session = await fetchAuthSession();
+  const token   = session.tokens?.idToken?.toString();
+  if (!token) throw new Error('Sesión expirada');
+  return token;
+}
+
 export default function Dashboard({ user, onSignOut }) {
-  const [invoices, setInvoices] = useState([]);
-  const [loading,  setLoading]  = useState(true);
-  const [uploading,setUploading]= useState(false);
-  const [statusMsg,setStatusMsg]= useState('');
-  const [dragOver, setDragOver] = useState(false);
-  const [error,    setError]    = useState('');
+  const [invoices,  setInvoices]  = useState([]);
+  const [loading,   setLoading]   = useState(true);
+  const [uploading, setUploading] = useState(false);
+  const [statusMsg, setStatusMsg] = useState('');
+  const [dragOver,  setDragOver]  = useState(false);
+  const [error,     setError]     = useState('');
 
   const loadInvoices = useCallback(async () => {
     try {
-      const session = await fetchAuthSession();
-      const token   = session.tokens?.idToken?.toString();
-      const resp    = await get({ apiName: 'InvoiceAPI', path: '/invoices',
-                        options: { headers: { Authorization: token } } }).response;
-      const data    = await resp.body.json();
+      const token = await getToken();
+      const resp  = await fetch(`${API}/invoices`, {
+        method: 'GET',
+        headers: { Authorization: token }
+      });
+
+      // Diagnóstico en consola para ver qué responde la API
+      console.log('GET /invoices status:', resp.status);
+      if (!resp.ok) {
+        const txt = await resp.text();
+        console.error('GET /invoices body:', txt);
+        throw new Error(`API respondió ${resp.status}: ${txt}`);
+      }
+
+      const data = await resp.json();
       setInvoices(data.invoices || []);
+      setError('');
     } catch (err) {
-      setError('No se pudo cargar el historial. Intenta recargar la página.');
+      console.error('loadInvoices error:', err);
+      setError(`Error cargando historial: ${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -36,38 +55,52 @@ export default function Dashboard({ user, onSignOut }) {
     if (!file) return;
     const allowed = ['image/jpeg','image/jpg','image/png','image/heic','image/webp'];
     if (!allowed.includes(file.type)) { setError('Solo imágenes JPG, PNG, HEIC o WEBP'); return; }
-    if (file.size > 10 * 1024 * 1024) { setError('Máximo 10 MB por imagen'); return; }
+    if (file.size > 10 * 1024 * 1024) { setError('Máximo 10 MB'); return; }
 
-    setError(''); setUploading(true); setStatusMsg('Preparando subida segura...');
+    setError(''); setUploading(true); setStatusMsg('Preparando subida...');
 
     try {
-      const session = await fetchAuthSession();
-      const token   = session.tokens?.idToken?.toString();
+      const token = await getToken();
 
-      // Paso 1: obtener presigned URL de nuestra API autenticada
-      const urlResp = await post({
-        apiName: 'InvoiceAPI', path: '/upload-url',
-        options: { headers: { Authorization: token }, body: { content_type: file.type } }
-      }).response;
-      const { upload_url, invoice_id } = await urlResp.body.json();
-
-      setStatusMsg('Subiendo foto...');
-
-      // Paso 2: subir directo a S3 — no pasa por Lambda (más eficiente)
-      const s3Resp = await fetch(upload_url, {
-        method: 'PUT', body: file, headers: { 'Content-Type': file.type }
+      // Paso 1: obtener presigned URL
+      setStatusMsg('Obteniendo URL segura...');
+      const urlResp = await fetch(`${API}/upload-url`, {
+        method: 'POST',
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ content_type: file.type })
       });
-      if (!s3Resp.ok) throw new Error(`S3 error: ${s3Resp.status}`);
 
+      console.log('POST /upload-url status:', urlResp.status);
+      if (!urlResp.ok) {
+        const txt = await urlResp.text();
+        console.error('POST /upload-url body:', txt);
+        throw new Error(`Error obteniendo URL: ${urlResp.status} — ${txt}`);
+      }
+
+      const { upload_url, invoice_id } = await urlResp.json();
+
+      // Paso 2: subir imagen directo a S3
+      setStatusMsg('Subiendo imagen...');
+      const s3Resp = await fetch(upload_url, {
+        method: 'PUT',
+        body: file,
+        headers: { 'Content-Type': file.type }
+      });
+      if (!s3Resp.ok) throw new Error(`S3 rechazó el archivo: ${s3Resp.status}`);
+
+      // Paso 3: polling para obtener resultado de Textract
       setStatusMsg('Procesando con IA... (~20 segundos)');
-
-      // Paso 3: polling hasta que DynamoDB tenga el resultado
       await sleep(POLL_DELAY_MS);
+
       for (let i = 0; i < MAX_POLLS; i++) {
         setStatusMsg(`Verificando resultado... (${i + 1}/${MAX_POLLS})`);
-        const r    = await get({ apiName: 'InvoiceAPI', path: '/invoices',
-                       options: { headers: { Authorization: token } } }).response;
-        const data = await r.body.json();
+        const r    = await fetch(`${API}/invoices`, {
+          headers: { Authorization: token }
+        });
+        const data = await r.json();
         const found = (data.invoices || []).find(inv => inv.invoice_id === invoice_id);
         if (found) {
           setInvoices(data.invoices || []);
@@ -76,10 +109,13 @@ export default function Dashboard({ user, onSignOut }) {
         }
         if (i < MAX_POLLS - 1) await sleep(POLL_INTERVAL_MS);
       }
+
     } catch (err) {
+      console.error('handleFile error:', err);
       setError(`Error: ${err.message}`);
     } finally {
-      setUploading(false); setStatusMsg('');
+      setUploading(false);
+      setStatusMsg('');
       await loadInvoices();
     }
   }
@@ -87,9 +123,8 @@ export default function Dashboard({ user, onSignOut }) {
   const emailDisplay = user?.signInDetails?.loginId || user?.username || 'Usuario';
 
   return (
-    <div style={{ maxWidth: 680, margin: '0 auto', padding: '1.5rem 1rem 3rem' }}>
+    <div style={{ maxWidth:680, margin:'0 auto', padding:'1.5rem 1rem 3rem' }}>
 
-      {/* Header */}
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.5rem' }}>
         <div>
           <h1 style={{ fontSize:20, fontWeight:500, marginBottom:2 }}>Mis recibos</h1>
@@ -101,13 +136,12 @@ export default function Dashboard({ user, onSignOut }) {
         </button>
       </div>
 
-      {/* Zona de subida */}
       <div
         onDragOver={e => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
         onDrop={e => { e.preventDefault(); setDragOver(false); handleFile(e.dataTransfer.files[0]); }}
         style={{
-          border: `2px dashed ${dragOver ? '#0066cc' : uploading ? '#ccc' : '#bbb'}`,
+          border:`2px dashed ${dragOver ? '#0066cc' : uploading ? '#ccc' : '#bbb'}`,
           borderRadius:12, padding:'2rem 1rem', textAlign:'center',
           marginBottom:'1.5rem', background: dragOver ? '#f0f7ff' : 'transparent',
           transition:'all 0.2s', opacity: uploading ? 0.65 : 1,
@@ -137,7 +171,6 @@ export default function Dashboard({ user, onSignOut }) {
         )}
       </div>
 
-      {/* Error */}
       {error && (
         <div style={{ background:'#fff3f3', border:'0.5px solid #ffcdd2', borderRadius:8,
           padding:'10px 14px', marginBottom:'1rem', fontSize:13, color:'#c62828' }}>
@@ -147,7 +180,6 @@ export default function Dashboard({ user, onSignOut }) {
         </div>
       )}
 
-      {/* Historial */}
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.75rem' }}>
         <h2 style={{ fontSize:15, fontWeight:500 }}>Historial {!loading && `(${invoices.length})`}</h2>
         <button onClick={loadInvoices} disabled={loading}
@@ -158,7 +190,7 @@ export default function Dashboard({ user, onSignOut }) {
 
       {loading && <p style={{ fontSize:13, color:'#888', textAlign:'center', padding:'2rem 0' }}>Cargando historial...</p>}
 
-      {!loading && invoices.length === 0 && (
+      {!loading && invoices.length === 0 && !error && (
         <div style={{ textAlign:'center', padding:'3rem 0', color:'#aaa' }}>
           <p style={{ fontSize:14 }}>Aún no tienes recibos digitalizados</p>
           <p style={{ fontSize:12, marginTop:4 }}>Sube tu primera foto arriba</p>
