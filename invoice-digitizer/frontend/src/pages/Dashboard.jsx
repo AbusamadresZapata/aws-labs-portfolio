@@ -30,7 +30,6 @@ export default function Dashboard({ user, onSignOut }) {
         headers: { Authorization: token }
       });
 
-      // Diagnóstico en consola para ver qué responde la API
       console.log('GET /invoices status:', resp.status);
       if (!resp.ok) {
         const txt = await resp.text();
@@ -62,7 +61,6 @@ export default function Dashboard({ user, onSignOut }) {
     try {
       const token = await getToken();
 
-      // Paso 1: obtener presigned URL
       setStatusMsg('Obteniendo URL segura...');
       const urlResp = await fetch(`${API}/upload-url`, {
         method: 'POST',
@@ -73,16 +71,13 @@ export default function Dashboard({ user, onSignOut }) {
         body: JSON.stringify({ content_type: file.type })
       });
 
-      console.log('POST /upload-url status:', urlResp.status);
       if (!urlResp.ok) {
         const txt = await urlResp.text();
-        console.error('POST /upload-url body:', txt);
         throw new Error(`Error obteniendo URL: ${urlResp.status} — ${txt}`);
       }
 
       const { upload_url, invoice_id } = await urlResp.json();
 
-      // Paso 2: subir imagen directo a S3
       setStatusMsg('Subiendo imagen...');
       const s3Resp = await fetch(upload_url, {
         method: 'PUT',
@@ -91,7 +86,6 @@ export default function Dashboard({ user, onSignOut }) {
       });
       if (!s3Resp.ok) throw new Error(`S3 rechazó el archivo: ${s3Resp.status}`);
 
-      // Paso 3: polling para obtener resultado de Textract
       setStatusMsg('Procesando con IA... (~20 segundos)');
       await sleep(POLL_DELAY_MS);
 
@@ -162,7 +156,7 @@ export default function Dashboard({ user, onSignOut }) {
               color:'#fff', borderRadius:8, cursor:'pointer', fontSize:14, fontWeight:500,
             }}>
               Subir recibo
-              <input type="file" accept="image/*" capture="environment"
+              <input type="file" accept="image/*"
                 onChange={e => { handleFile(e.target.files[0]); e.target.value=''; }}
                 style={{ display:'none' }} />
             </label>
