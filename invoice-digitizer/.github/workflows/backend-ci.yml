@@ -3,10 +3,10 @@ name: Backend CI — Lambda tests + deploy
 on:
   push:
     branches: [main]
-    paths: ['backend/**', 'infra/**']
+    paths: ['invoice-digitizer/backend/**', 'invoice-digitizer/infra/**']
   pull_request:
     branches: [main]
-    paths: ['backend/**', 'infra/**']
+    paths: ['invoice-digitizer/backend/**', 'invoice-digitizer/infra/**']
 
 jobs:
   test:
@@ -19,9 +19,9 @@ jobs:
       - name: Instalar dependencias
         run: pip install pytest boto3 moto[s3,dynamodb] flake8
       - name: Lint
-        run: flake8 backend/lambda/ --max-line-length=100 --ignore=E501,W503
+        run: flake8 invoice-digitizer/backend/lambda/ --max-line-length=100 --ignore=E501,W503
       - name: Tests
-        run: pytest backend/tests/ -v
+        run: pytest invoice-digitizer/backend/tests/ -v
         env:
           AWS_DEFAULT_REGION: us-east-1
           AWS_ACCESS_KEY_ID: test
@@ -41,13 +41,13 @@ jobs:
           aws-region: us-east-1
       - name: Deploy get-upload-url
         run: |
-          cd backend/lambda && zip get_upload_url.zip get_upload_url.py
+          cd invoice-digitizer/backend/lambda && zip get_upload_url.zip get_upload_url.py
           aws lambda update-function-code --function-name invoice-get-upload-url --zip-file fileb://get_upload_url.zip
       - name: Deploy ocr-processor
         run: |
-          cd backend/lambda && zip ocr_processor.zip ocr_processor.py
-          aws lambda update-function-code --function-name invoice-ocr-processor --zip-file fileb://ocr_processor.zip
+          cd invoice-digitizer/backend/lambda && zip invoice_ocr_v2.zip invoice_ocr_v2.py
+          aws lambda update-function-code --function-name invoice-ocr-processor --zip-file fileb://invoice_ocr_v2.zip
       - name: Deploy get-invoices
         run: |
-          cd backend/lambda && zip get_invoices.zip get_invoices.py
+          cd invoice-digitizer/backend/lambda && zip get_invoices.zip get_invoices.py
           aws lambda update-function-code --function-name invoice-get-invoices --zip-file fileb://get_invoices.zip
