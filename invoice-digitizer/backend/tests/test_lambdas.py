@@ -84,3 +84,46 @@ def test_parse_with_claude_normalizes_items(monkeypatch):
     assert result['items'][0]['producto'] == 'Leche 1L'
     assert result['items'][0]['cantidad'] == 2.0
     assert result['items_count'] == 1
+
+
+# ── Tests: _merge_results ─────────────────────────────────────
+
+def test_merge_results_claude_priority_on_text_fields():
+    claude  = _make_parsed(total=55000.0, vendor='Claude Co')
+    classic = _make_parsed(total=40000.0, vendor='Classic Co')
+    result  = ocr._merge_results(claude, classic)
+    assert result['total']  == 55000.0
+    assert result['vendor'] == 'Claude Co'
+
+
+def test_merge_results_fills_claude_nulls_from_classic():
+    claude  = _make_parsed(total=55000.0, nit=None, date=None)
+    classic = _make_parsed(total=40000.0, nit='900123456-1', date='01/05/2026')
+    result  = ocr._merge_results(claude, classic)
+    assert result['total'] == 55000.0
+    assert result['nit']   == '900123456-1'
+    assert result['date']  == '01/05/2026'
+
+
+def test_merge_results_classic_items_take_priority():
+    claude  = _make_parsed(items=[{'producto': 'Claude item', 'cantidad': 1.0,
+                                    'precio_unit': None, 'valor_total': None}])
+    classic = _make_parsed(items=[{'producto': 'Textract item', 'cantidad': 2.0,
+                                    'precio_unit': None, 'valor_total': None}])
+    result  = ocr._merge_results(claude, classic)
+    assert result['items'][0]['producto'] == 'Textract item'
+
+
+def test_merge_results_claude_items_as_fallback_when_classic_empty():
+    claude  = _make_parsed(items=[{'producto': 'Claude item', 'cantidad': 1.0,
+                                    'precio_unit': None, 'valor_total': None}])
+    classic = _make_parsed(items=[])
+    result  = ocr._merge_results(claude, classic)
+    assert result['items'][0]['producto'] == 'Claude item'
+
+
+def test_merge_results_items_count_consistent_with_items():
+    claude  = _make_parsed(items=[{'producto': 'A'}, {'producto': 'B'}])
+    classic = _make_parsed(items=[])
+    result  = ocr._merge_results(claude, classic)
+    assert result['items_count'] == len(result['items']) == 2
