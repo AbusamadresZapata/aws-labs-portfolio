@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
       - name: Instalar dependencias
-        run: pip install pytest boto3 moto[s3,dynamodb] flake8
+        run: pip install pytest boto3 "moto[s3,dynamodb,sns]" flake8
       - name: Lint
         run: flake8 invoice-digitizer/backend/lambda/ --max-line-length=100 --ignore=E501,W503,E221,E241
       - name: Tests
@@ -55,3 +55,7 @@ jobs:
         run: |
           cd invoice-digitizer/backend/lambda && zip get_invoices.zip get_invoices.py
           aws lambda update-function-code --function-name invoice-get-invoices --zip-file fileb://get_invoices.zip
+      - name: Deploy cognito-post-confirm
+        run: |
+          cd invoice-digitizer/backend/lambda && zip cognito_post_confirm.zip cognito_post_confirm.py
+          aws lambda update-function-code --function-name cognito-post-confirm --zip-file fileb://cognito_post_confirm.zip
