@@ -7,6 +7,7 @@ on:
   pull_request:
     branches: [main]
     paths: ['invoice-digitizer/backend/**', 'invoice-digitizer/infra/**']
+  workflow_dispatch:
 
 jobs:
   test:
