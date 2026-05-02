@@ -2,10 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import InvoiceCard from '../components/InvoiceCard';
 
-const API = process.env.REACT_APP_API_ENDPOINT;
+const API              = process.env.REACT_APP_API_ENDPOINT;
 const POLL_DELAY_MS    = 20000;
 const POLL_INTERVAL_MS = 5000;
 const MAX_POLLS        = 6;
+const UPLOAD_STEPS     = ['Subiendo', 'Leyendo', 'Analizando'];
 
 async function getToken() {
   const session = await fetchAuthSession();
@@ -15,12 +16,15 @@ async function getToken() {
 }
 
 export default function Dashboard({ user, onSignOut }) {
-  const [invoices,  setInvoices]  = useState([]);
-  const [loading,   setLoading]   = useState(true);
-  const [uploading, setUploading] = useState(false);
-  const [statusMsg, setStatusMsg] = useState('');
-  const [dragOver,  setDragOver]  = useState(false);
-  const [error,     setError]     = useState('');
+  const [invoices,     setInvoices]     = useState([]);
+  const [loading,      setLoading]      = useState(true);
+  const [uploading,    setUploading]    = useState(false);
+  const [uploadStep,   setUploadStep]   = useState(0);
+  const [statusMsg,    setStatusMsg]    = useState('');
+  const [dragOver,     setDragOver]     = useState(false);
+  const [error,        setError]        = useState('');
+  const [filterVendor, setFilterVendor] = useState('');
+  const [filterDate,   setFilterDate]   = useState('');
 
   const loadInvoices = useCallback(async () => {
     try {
@@ -56,44 +60,34 @@ export default function Dashboard({ user, onSignOut }) {
     if (!allowed.includes(file.type)) { setError('Solo imágenes JPG, PNG, HEIC o WEBP'); return; }
     if (file.size > 10 * 1024 * 1024) { setError('Máximo 10 MB'); return; }
 
-    setError(''); setUploading(true); setStatusMsg('Preparando subida...');
+    setError(''); setUploading(true); setUploadStep(1); setStatusMsg('Obteniendo URL segura...');
 
     try {
       const token = await getToken();
 
-      setStatusMsg('Obteniendo URL segura...');
       const urlResp = await fetch(`${API}/upload-url`, {
         method: 'POST',
-        headers: {
-          Authorization: token,
-          'Content-Type': 'application/json'
-        },
+        headers: { Authorization: token, 'Content-Type': 'application/json' },
         body: JSON.stringify({ content_type: file.type })
       });
-
       if (!urlResp.ok) {
         const txt = await urlResp.text();
         throw new Error(`Error obteniendo URL: ${urlResp.status} — ${txt}`);
       }
-
       const { upload_url, invoice_id } = await urlResp.json();
 
-      setStatusMsg('Subiendo imagen...');
+      setStatusMsg('Subiendo imagen a S3...');
       const s3Resp = await fetch(upload_url, {
-        method: 'PUT',
-        body: file,
-        headers: { 'Content-Type': file.type }
+        method: 'PUT', body: file, headers: { 'Content-Type': file.type }
       });
       if (!s3Resp.ok) throw new Error(`S3 rechazó el archivo: ${s3Resp.status}`);
 
-      setStatusMsg('Procesando con IA... (~20 segundos)');
+      setUploadStep(2); setStatusMsg('Textract leyendo el documento...');
       await sleep(POLL_DELAY_MS);
 
+      setUploadStep(3); setStatusMsg('IA analizando campos...');
       for (let i = 0; i < MAX_POLLS; i++) {
-        setStatusMsg(`Verificando resultado... (${i + 1}/${MAX_POLLS})`);
-        const r    = await fetch(`${API}/invoices`, {
-          headers: { Authorization: token }
-        });
+        const r    = await fetch(`${API}/invoices`, { headers: { Authorization: token } });
         const data = await r.json();
         const found = (data.invoices || []).find(inv => inv.invoice_id === invoice_id);
         if (found) {
@@ -108,13 +102,24 @@ export default function Dashboard({ user, onSignOut }) {
       console.error('handleFile error:', err);
       setError(`Error: ${err.message}`);
     } finally {
-      setUploading(false);
-      setStatusMsg('');
+      setUploading(false); setUploadStep(0); setStatusMsg('');
       await loadInvoices();
     }
   }
 
-  const emailDisplay = user?.signInDetails?.loginId || user?.username || 'Usuario';
+  const filteredInvoices = invoices.filter(inv => {
+    if (filterVendor) {
+      if (!(inv.vendor || '').toLowerCase().includes(filterVendor.toLowerCase())) return false;
+    }
+    if (filterDate) {
+      const invDate = inv.processed_at ? inv.processed_at.slice(0, 10) : '';
+      if (invDate < filterDate) return false;
+    }
+    return true;
+  });
+
+  const emailDisplay  = user?.signInDetails?.loginId || user?.username || 'Usuario';
+  const activeFilters = filterVendor || filterDate;
 
   return (
     <div style={{ maxWidth:680, margin:'0 auto', padding:'1.5rem 1rem 3rem' }}>
@@ -138,13 +143,40 @@ export default function Dashboard({ user, onSignOut }) {
           border:`2px dashed ${dragOver ? '#0066cc' : uploading ? '#ccc' : '#bbb'}`,
           borderRadius:12, padding:'2rem 1rem', textAlign:'center',
           marginBottom:'1.5rem', background: dragOver ? '#f0f7ff' : 'transparent',
-          transition:'all 0.2s', opacity: uploading ? 0.65 : 1,
+          transition:'all 0.2s', opacity: uploading ? 0.9 : 1,
         }}
       >
         {uploading ? (
           <div>
-            <p style={{ fontSize:14, color:'#0066cc', fontWeight:500 }}>{statusMsg}</p>
-            <p style={{ fontSize:12, color:'#888', marginTop:6 }}>Textract está leyendo tu recibo</p>
+            <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'center', marginBottom:16 }}>
+              {UPLOAD_STEPS.map((label, idx) => {
+                const n      = idx + 1;
+                const done   = uploadStep > n;
+                const active = uploadStep === n;
+                return (
+                  <div key={n} style={{ display:'flex', alignItems:'flex-start' }}>
+                    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:4, width:76 }}>
+                      <div style={{
+                        width:28, height:28, borderRadius:'50%',
+                        background: done ? '#2e7d32' : active ? '#0066cc' : '#e0e0e0',
+                        color: done || active ? '#fff' : '#aaa',
+                        display:'flex', alignItems:'center', justifyContent:'center',
+                        fontSize:12, fontWeight:600, transition:'background 0.3s',
+                      }}>
+                        {done ? '✓' : n}
+                      </div>
+                      <span style={{ fontSize:10, color: active ? '#0066cc' : done ? '#2e7d32' : '#bbb', textAlign:'center', lineHeight:1.3 }}>
+                        {label}
+                      </span>
+                    </div>
+                    {idx < UPLOAD_STEPS.length - 1 && (
+                      <div style={{ width:24, height:1, background: uploadStep > n ? '#2e7d32' : '#e0e0e0', marginTop:14, flexShrink:0, transition:'background 0.3s' }} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <p style={{ fontSize:13, color:'#555', margin:0 }}>{statusMsg}</p>
           </div>
         ) : (
           <div>
@@ -174,13 +206,45 @@ export default function Dashboard({ user, onSignOut }) {
         </div>
       )}
 
-      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.75rem' }}>
-        <h2 style={{ fontSize:15, fontWeight:500 }}>Historial {!loading && `(${invoices.length})`}</h2>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.5rem' }}>
+        <h2 style={{ fontSize:15, fontWeight:500 }}>
+          Historial{' '}
+          {!loading && (
+            <span style={{ fontWeight:400, color:'#888' }}>
+              ({activeFilters && filteredInvoices.length !== invoices.length
+                ? `${filteredInvoices.length} de ${invoices.length}`
+                : invoices.length})
+            </span>
+          )}
+        </h2>
         <button onClick={loadInvoices} disabled={loading}
           style={{ fontSize:12, color:'#0066cc', background:'none', border:'none', cursor:'pointer', padding:0 }}>
           {loading ? 'Cargando...' : '↻ Actualizar'}
         </button>
       </div>
+
+      {!loading && invoices.length > 0 && (
+        <div style={{ display:'flex', gap:8, marginBottom:'0.75rem' }}>
+          <input
+            placeholder="Buscar por comercio..."
+            value={filterVendor}
+            onChange={e => setFilterVendor(e.target.value)}
+            style={{ flex:1, padding:'6px 10px', borderRadius:8, border:'0.5px solid #ddd', fontSize:13, outline:'none' }}
+          />
+          <input
+            type="date"
+            value={filterDate}
+            onChange={e => setFilterDate(e.target.value)}
+            style={{ padding:'6px 10px', borderRadius:8, border:'0.5px solid #ddd', fontSize:13, outline:'none' }}
+          />
+          {activeFilters && (
+            <button onClick={() => { setFilterVendor(''); setFilterDate(''); }}
+              style={{ padding:'6px 12px', borderRadius:8, border:'0.5px solid #ddd', background:'#f5f5f5', cursor:'pointer', fontSize:13, color:'#555', whiteSpace:'nowrap' }}>
+              Limpiar
+            </button>
+          )}
+        </div>
+      )}
 
       {loading && <p style={{ fontSize:13, color:'#888', textAlign:'center', padding:'2rem 0' }}>Cargando historial...</p>}
 
@@ -191,7 +255,13 @@ export default function Dashboard({ user, onSignOut }) {
         </div>
       )}
 
-      {invoices.map(inv => <InvoiceCard key={inv.invoice_id} invoice={inv} />)}
+      {!loading && invoices.length > 0 && filteredInvoices.length === 0 && (
+        <p style={{ fontSize:13, color:'#aaa', textAlign:'center', padding:'1rem 0' }}>
+          Ningún recibo coincide con los filtros
+        </p>
+      )}
+
+      {filteredInvoices.map(inv => <InvoiceCard key={inv.invoice_id} invoice={inv} />)}
     </div>
   );
 }
