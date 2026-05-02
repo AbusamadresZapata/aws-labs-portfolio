@@ -5,6 +5,13 @@ import re
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
 
+try:
+    import anthropic as _anthropic
+    _anthropic_key = os.environ.get('ANTHROPIC_API_KEY')
+    claude_client  = _anthropic.Anthropic(api_key=_anthropic_key) if _anthropic_key else None
+except ImportError:
+    claude_client = None
+
 s3       = boto3.client('s3')
 textract = boto3.client('textract', region_name='us-east-1')
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
@@ -15,7 +22,7 @@ BUCKET_PROCESSED = os.environ['BUCKET_PROCESSED']
 SNS_TOPIC_ARN    = os.environ['SNS_TOPIC_ARN']
 
 
-def lambda_handler(event, context):
+def lambda_handler(event, _context):
     record    = event['Records'][0]
     bucket_in = record['s3']['bucket']['name']
     s3_key    = record['s3']['object']['key']
@@ -31,8 +38,6 @@ def lambda_handler(event, context):
     invoice_id = parts[2].split('_')[0]
 
     # ── 1. TEXTRACT ──────────────────────────────────────────
-    # FORMS detecta pares clave:valor ("TOTAL: $55.000")
-    # TABLES detecta filas de productos con columnas alineadas
     try:
         response = textract.analyze_document(
             Document={'S3Object': {'Bucket': bucket_in, 'Name': s3_key}},
@@ -61,8 +66,11 @@ def lambda_handler(event, context):
     )
 
     # ── 3. PARSEAR CAMPOS ────────────────────────────────────
-    parsed = _parse_invoice(lines, full_text, blocks)
-    print(f"Parsed: campos={list(parsed.keys())} items={parsed['items_count']}")
+    claude_parsed  = _parse_with_claude(full_text)
+    classic_parsed = _parse_invoice(lines, full_text, blocks)
+    parsed = _merge_results(claude_parsed, classic_parsed) if claude_parsed else classic_parsed
+    print(f"Parser: {'Claude+merge' if claude_parsed else 'clásico'} | "
+          f"vendor={parsed.get('vendor')} total={parsed.get('total')} items={parsed['items_count']}")
 
     # ── 4. DYNAMODB ──────────────────────────────────────────
     table.put_item(Item={
@@ -92,7 +100,97 @@ def lambda_handler(event, context):
     return {'statusCode': 200, 'invoice_id': invoice_id}
 
 
-# ── PARSER ───────────────────────────────────────────────────
+# ── CLAUDE PARSER ─────────────────────────────────────────────
+
+def _parse_with_claude(full_text):
+    if claude_client is None:
+        return None
+
+    prompt = (
+        "Eres un extractor de datos de facturas y recibos colombianos.\n"
+        "Del siguiente texto extraído por OCR, extrae los campos en formato JSON.\n\n"
+        "Reglas:\n"
+        "- total, subtotal, discount: número sin símbolo de moneda. "
+        "Formato colombiano '1.234.567,89' → 1234567.89. null si no está.\n"
+        "- invoice_number: número del recibo o factura (null si no está)\n"
+        "- date: fecha en formato DD/MM/YYYY (null si no está)\n"
+        "- vendor: nombre del comercio o empresa emisora (null si no está)\n"
+        "- nit: NIT/RUC del vendedor, solo dígitos y guion (null si no está)\n"
+        "- client_name: nombre del comprador (null si no está)\n"
+        "- address: dirección del comercio (null si no está)\n"
+        "- items: lista [{producto, cantidad, precio_unit, valor_total}] o [] si no hay tabla\n\n"
+        "Responde ÚNICAMENTE con el JSON válido, sin texto adicional ni bloques markdown.\n\n"
+        f"TEXTO:\n{full_text[:4000]}"
+    )
+
+    try:
+        msg = claude_client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=1024,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        raw = msg.content[0].text.strip()
+        if raw.startswith('```'):
+            raw = re.sub(r'^```\w*\n?', '', raw)
+            raw = re.sub(r'\n?```$', '', raw.strip())
+
+        data = json.loads(raw)
+
+        items = []
+        for idx, it in enumerate(data.get('items') or [], start=1):
+            producto = str(it.get('producto') or '').strip()
+            if not producto:
+                continue
+            items.append({
+                'item':          str(idx),
+                'referencia':    '',
+                'producto':      producto,
+                'unidad':        '',
+                'cantidad':      _num(str(it['cantidad'])) if it.get('cantidad') is not None else None,
+                'precio_unit':   _num(str(it['precio_unit'])) if it.get('precio_unit') is not None else None,
+                'descuento_pct': None,
+                'valor_total':   _num(str(it['valor_total'])) if it.get('valor_total') is not None else None,
+            })
+
+        return {
+            'total':          _num(str(data['total'])) if data.get('total') is not None else None,
+            'subtotal':       _num(str(data['subtotal'])) if data.get('subtotal') is not None else None,
+            'discount':       _num(str(data['discount'])) if data.get('discount') is not None else None,
+            'invoice_number': str(data['invoice_number']).strip() if data.get('invoice_number') else None,
+            'date':           str(data['date']).strip() if data.get('date') else None,
+            'vendor':         str(data['vendor']).strip() if data.get('vendor') else None,
+            'nit':            str(data['nit']).strip() if data.get('nit') else None,
+            'client_name':    str(data['client_name']).strip() if data.get('client_name') else None,
+            'address':        str(data['address']).strip() if data.get('address') else None,
+            'items':          items,
+            'items_count':    len(items),
+        }
+
+    except Exception as e:
+        print(f"WARNING Claude parsing falló, usando parser clásico: {e}")
+        return None
+
+
+def _merge_results(claude, classic):
+    TEXT_FIELDS = [
+        'total', 'subtotal', 'discount', 'invoice_number',
+        'date', 'vendor', 'nit', 'client_name', 'address',
+    ]
+    merged = {}
+    for field in TEXT_FIELDS:
+        merged[field] = claude.get(field) if claude.get(field) is not None else classic.get(field)
+
+    if classic.get('items'):
+        merged['items']       = classic['items']
+        merged['items_count'] = classic['items_count']
+    else:
+        merged['items']       = claude.get('items', [])
+        merged['items_count'] = len(merged['items'])
+
+    return merged
+
+
+# ── PARSER CLÁSICO (fallback) ──────────────────────────────────
 
 def _parse_invoice(lines, full_text, blocks):
     result = {
@@ -147,7 +245,7 @@ def _parse_invoice(lines, full_text, blocks):
 
     # Cliente: busca patrón después de "Señores:" o "Cliente:"
     cliente_match = re.search(
-        r'(?:Se\u00f1ores?|Cliente|Comprador)[:\s]+([A-Z][A-Z\s]{4,50})',
+        r'(?:Señores?|Cliente|Comprador)[:\s]+([A-Z][A-Z\s]{4,50})',
         full_text
     )
     if cliente_match:
@@ -155,7 +253,7 @@ def _parse_invoice(lines, full_text, blocks):
 
     # Dirección
     dir_match = re.search(
-        r'(?:Direcci\u00f3n|Direccion|Calle|Carrera|Avenida|Cra\.?|Cl\.?)[:\s]+([^\n]{5,60})',
+        r'(?:Dirección|Direccion|Calle|Carrera|Avenida|Cra\.?|Cl\.?)[:\s]+([^\n]{5,60})',
         full_text, re.IGNORECASE
     )
     if dir_match:
@@ -164,7 +262,6 @@ def _parse_invoice(lines, full_text, blocks):
     # Extraer tabla de productos desde bloques TABLE de Textract
     result['items'] = _extract_table_items(blocks)
 
-    # items_count: usa la tabla si se encontró, sino fallback por regex
     if result['items']:
         result['items_count'] = len(result['items'])
     else:
@@ -235,7 +332,6 @@ def _extract_table_items(blocks):
             elif any(x in ct for x in ['valor total', 'total', 'importe', 'subtotal']):
                 col_map['valor_total'] = col_idx
 
-        # Si no se detectó la columna de producto, saltar esta tabla
         if 'producto' not in col_map:
             continue
 
