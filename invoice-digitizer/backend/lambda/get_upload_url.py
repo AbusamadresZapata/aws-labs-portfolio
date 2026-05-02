@@ -12,6 +12,7 @@ BUCKET_RAW     = os.environ.get('BUCKET_RAW')
 FRONTEND_URL   = os.environ.get('FRONTEND_URL')
 EXPIRY_SECONDS = 300
 
+
 def lambda_handler(event, context):
     # Verificación de claims (Cognito Authorizer)
     try:
@@ -44,8 +45,8 @@ def lambda_handler(event, context):
         url = s3.generate_presigned_url(
             'put_object',
             Params={
-                'Bucket': BUCKET_RAW, 
-                'Key': s3_key, 
+                'Bucket': BUCKET_RAW,
+                'Key': s3_key,
                 'ContentType': content_type
             },
             ExpiresIn=EXPIRY_SECONDS
@@ -56,10 +57,11 @@ def lambda_handler(event, context):
 
     print(f"URL generada: user={user_email} invoice={invoice_id}")
     return _r(200, {
-        'upload_url': url, 
-        'invoice_id': invoice_id, 
+        'upload_url': url,
+        'invoice_id': invoice_id,
         's3_key': s3_key
     })
+
 
 def _r(code, body):
     return {

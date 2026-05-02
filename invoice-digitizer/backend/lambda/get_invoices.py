@@ -11,11 +11,13 @@ table    = dynamodb.Table('invoices')
 # Buscamos la LLAVE 'FRONTEND_URL' en las variables de entorno
 FRONTEND_URL = os.environ.get('FRONTEND_URL')
 
+
 class DecimalEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Decimal):
             return float(obj)
         return super().default(obj)
+
 
 def lambda_handler(event, context):
     try:
@@ -31,9 +33,9 @@ def lambda_handler(event, context):
         # CONSULTA: user_id es tu Partition Key
         response = table.query(
             KeyConditionExpression=Key('user_id').eq(user_id),
-            # NOTA: Al ser 'invoice_id' la Sort Key, 
+            # NOTA: Al ser 'invoice_id' la Sort Key,
             # el ordenamiento será por ID, no necesariamente por fecha.
-            ScanIndexForward=False, 
+            ScanIndexForward=False,
             Limit=limit,
         )
         items = response['Items']
@@ -47,6 +49,7 @@ def lambda_handler(event, context):
     except Exception as e:
         print(f"ERROR DynamoDB: {e}")
         return _r(500, {'error': 'Error al obtener recibos'})
+
 
 def _r(code, body):
     return {

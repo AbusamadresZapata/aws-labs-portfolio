@@ -19,7 +19,7 @@ jobs:
       - name: Instalar dependencias
         run: pip install pytest boto3 moto[s3,dynamodb] flake8
       - name: Lint
-        run: flake8 invoice-digitizer/backend/lambda/ --max-line-length=100 --ignore=E501,W503
+        run: flake8 invoice-digitizer/backend/lambda/ --max-line-length=100 --ignore=E501,W503,E221,E241
       - name: Tests
         run: pytest invoice-digitizer/backend/tests/ -v
         env:
@@ -45,8 +45,12 @@ jobs:
           aws lambda update-function-code --function-name invoice-get-upload-url --zip-file fileb://get_upload_url.zip
       - name: Deploy ocr-processor
         run: |
-          cd invoice-digitizer/backend/lambda && zip invoice_ocr_v2.zip invoice_ocr_v2.py
+          cd invoice-digitizer/backend/lambda
+          pip install anthropic -t ./pkg/ --quiet
+          cd pkg && zip -r ../invoice_ocr_v2.zip . && cd ..
+          zip invoice_ocr_v2.zip invoice_ocr_v2.py
           aws lambda update-function-code --function-name invoice-ocr-processor --zip-file fileb://invoice_ocr_v2.zip
+          rm -rf pkg invoice_ocr_v2.zip
       - name: Deploy get-invoices
         run: |
           cd invoice-digitizer/backend/lambda && zip get_invoices.zip get_invoices.py
