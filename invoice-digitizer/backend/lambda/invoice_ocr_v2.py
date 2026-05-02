@@ -181,10 +181,10 @@ def _merge_results(claude, classic):
         merged[field] = claude.get(field) if claude.get(field) is not None else classic.get(field)
 
     if classic.get('items'):
-        merged['items']       = classic['items']
+        merged['items'] = classic['items']
         merged['items_count'] = classic['items_count']
     else:
-        merged['items']       = claude.get('items', [])
+        merged['items'] = claude.get('items', [])
         merged['items_count'] = len(merged['items'])
 
     return merged
