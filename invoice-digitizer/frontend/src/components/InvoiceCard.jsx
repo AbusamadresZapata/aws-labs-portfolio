@@ -113,7 +113,7 @@ export default function InvoiceCard({ invoice }) {
                   </td>
                   <td style={{ padding:'4px 6px', textAlign:'right',  color:'#666', whiteSpace:'nowrap' }}>
                     {item.precio_unit != null
-                      ? `$${Number(item.precio_unit).toLocaleString('es-CO')}`
+                      ? `$${Number(item.precio_unit).toLocaleString('es-CO', { minimumFractionDigits:0 })}`
                       : '—'}
                   </td>
                   <td style={{ padding:'4px 6px', textAlign:'right',  color:'#888' }}>
@@ -121,7 +121,7 @@ export default function InvoiceCard({ invoice }) {
                   </td>
                   <td style={{ padding:'4px 6px', textAlign:'right',  color:'#333', fontWeight:500, whiteSpace:'nowrap' }}>
                     {item.valor_total != null
-                      ? `$${Number(item.valor_total).toLocaleString('es-CO')}`
+                      ? `$${Number(item.valor_total).toLocaleString('es-CO', { minimumFractionDigits:0 })}`
                       : '—'}
                   </td>
                 </tr>
