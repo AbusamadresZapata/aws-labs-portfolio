@@ -1,0 +1,26 @@
+# Claude Code — archivos internos (no subir a GitHub)
+.claude/
+CLAUDE.local.md
+
+# Editor y herramientas locales
+.vscode/
+.mcp.json
+
+# Facturas personales
+Facturas/
+
+# Artefactos de build Lambda
+invoice-digitizer/backend/lambda/*.zip
+
+# Frontend build
+invoice-digitizer/frontend/build/
+invoice-digitizer/frontend/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Entorno local
+.env
+.env.local
