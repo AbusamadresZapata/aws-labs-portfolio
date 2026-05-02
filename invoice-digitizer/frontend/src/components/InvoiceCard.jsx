@@ -1,10 +1,19 @@
 import { useState } from 'react';
 
 export default function InvoiceCard({ invoice }) {
-  const [expanded, setExpanded] = useState(false);
-  const isError   = invoice.status === 'error';
+  const [expandedText,  setExpandedText]  = useState(false);
+  const [expandedItems, setExpandedItems] = useState(false);
+
+  const isError    = invoice.status === 'error';
   const confidence = Number(invoice.confidence || 0);
   const total      = Number(invoice.total || 0);
+
+  let items = [];
+  try {
+    const raw = invoice.items_json;
+    items = raw ? (typeof raw === 'string' ? JSON.parse(raw) : raw) : [];
+  } catch { items = []; }
+  const hasItems = items.length > 0;
 
   const confColor = confidence >= 85 ? '#2e7d32' : confidence >= 65 ? '#f57c00' : '#c62828';
   const dateStr   = new Date(invoice.processed_at).toLocaleDateString('es-CO',
@@ -47,21 +56,82 @@ export default function InvoiceCard({ invoice }) {
       </div>
 
       {!isError && (
-        <div style={{ display:'flex', gap:16, marginTop:10, paddingTop:8, borderTop:'0.5px solid #f0f0f0' }}>
+        <div style={{ display:'flex', gap:16, marginTop:10, paddingTop:8, borderTop:'0.5px solid #f0f0f0', flexWrap:'wrap' }}>
           <span style={{ fontSize:11, color:'#888' }}>
             Confianza OCR: <span style={{ color:confColor, fontWeight:500 }}>{confidence.toFixed(0)}%</span>
           </span>
           <span style={{ fontSize:11, color:'#888' }}>Procesado: {dateStr}</span>
-          {invoice.raw_text && (
-            <button onClick={() => setExpanded(!expanded)}
-              style={{ fontSize:11, color:'#0066cc', background:'none', border:'none', cursor:'pointer', padding:0, marginLeft:'auto' }}>
-              {expanded ? 'Ocultar texto' : 'Ver texto extraído'}
-            </button>
-          )}
+          <div style={{ marginLeft:'auto', display:'flex', gap:12 }}>
+            {hasItems && (
+              <button onClick={() => setExpandedItems(!expandedItems)}
+                style={{ fontSize:11, color:'#0066cc', background:'none', border:'none', cursor:'pointer', padding:0 }}>
+                {expandedItems ? 'Ocultar productos' : `Ver productos (${items.length})`}
+              </button>
+            )}
+            {invoice.raw_text && (
+              <button onClick={() => setExpandedText(!expandedText)}
+                style={{ fontSize:11, color:'#888', background:'none', border:'none', cursor:'pointer', padding:0 }}>
+                {expandedText ? 'Ocultar texto' : 'Ver texto extraído'}
+              </button>
+            )}
+          </div>
         </div>
       )}
 
-      {expanded && invoice.raw_text && (
+      {expandedItems && hasItems && (
+        <div style={{ marginTop:10, overflowX:'auto' }}>
+          <table style={{ width:'100%', borderCollapse:'collapse', fontSize:11 }}>
+            <thead>
+              <tr style={{ borderBottom:'1px solid #e8e8e8', color:'#999' }}>
+                <th style={{ textAlign:'right',  padding:'4px 6px', fontWeight:500, whiteSpace:'nowrap' }}>#</th>
+                <th style={{ textAlign:'left',   padding:'4px 6px', fontWeight:500, whiteSpace:'nowrap' }}>Referencia</th>
+                <th style={{ textAlign:'left',   padding:'4px 6px', fontWeight:500 }}>Producto</th>
+                <th style={{ textAlign:'center', padding:'4px 6px', fontWeight:500, whiteSpace:'nowrap' }}>Unidad</th>
+                <th style={{ textAlign:'right',  padding:'4px 6px', fontWeight:500, whiteSpace:'nowrap' }}>Cant</th>
+                <th style={{ textAlign:'right',  padding:'4px 6px', fontWeight:500, whiteSpace:'nowrap' }}>P.Unit</th>
+                <th style={{ textAlign:'right',  padding:'4px 6px', fontWeight:500, whiteSpace:'nowrap' }}>Desc %</th>
+                <th style={{ textAlign:'right',  padding:'4px 6px', fontWeight:500, whiteSpace:'nowrap' }}>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item, i) => (
+                <tr key={i} style={{ borderBottom:'0.5px solid #f5f5f5' }}>
+                  <td style={{ padding:'4px 6px', textAlign:'right',  color:'#aaa' }}>
+                    {item.item || '—'}
+                  </td>
+                  <td style={{ padding:'4px 6px', textAlign:'left',   color:'#888' }}>
+                    {item.referencia || '—'}
+                  </td>
+                  <td style={{ padding:'4px 6px', textAlign:'left',   color:'#333' }}>
+                    {item.producto || '—'}
+                  </td>
+                  <td style={{ padding:'4px 6px', textAlign:'center', color:'#888' }}>
+                    {item.unidad || '—'}
+                  </td>
+                  <td style={{ padding:'4px 6px', textAlign:'right',  color:'#666' }}>
+                    {item.cantidad != null ? item.cantidad : '—'}
+                  </td>
+                  <td style={{ padding:'4px 6px', textAlign:'right',  color:'#666', whiteSpace:'nowrap' }}>
+                    {item.precio_unit != null
+                      ? `$${Number(item.precio_unit).toLocaleString('es-CO')}`
+                      : '—'}
+                  </td>
+                  <td style={{ padding:'4px 6px', textAlign:'right',  color:'#888' }}>
+                    {item.descuento_pct != null ? `${item.descuento_pct}%` : '—'}
+                  </td>
+                  <td style={{ padding:'4px 6px', textAlign:'right',  color:'#333', fontWeight:500, whiteSpace:'nowrap' }}>
+                    {item.valor_total != null
+                      ? `$${Number(item.valor_total).toLocaleString('es-CO')}`
+                      : '—'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {expandedText && invoice.raw_text && (
         <div style={{ marginTop:10, padding:'10px 12px', background:'#f8f8f8',
           borderRadius:6, fontSize:12, fontFamily:'monospace', whiteSpace:'pre-wrap',
           color:'#444', maxHeight:200, overflowY:'auto', lineHeight:1.6 }}>
