@@ -1,0 +1,61 @@
+name: Backend CI — Lambda tests + deploy
+
+on:
+  push:
+    branches: [main]
+    paths: ['invoice-digitizer/backend/**', 'invoice-digitizer/infra/**']
+  pull_request:
+    branches: [main]
+    paths: ['invoice-digitizer/backend/**', 'invoice-digitizer/infra/**']
+
+jobs:
+  test:
+    name: Tests + policy validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Instalar dependencias
+        run: pip install pytest boto3 "moto[s3,dynamodb,sns]" flake8
+      - name: Lint
+        run: flake8 invoice-digitizer/backend/lambda/ --max-line-length=100 --ignore=E501,W503,E221,E241
+      - name: Tests
+        run: pytest invoice-digitizer/backend/tests/ -v
+        env:
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: test
+          AWS_SECRET_ACCESS_KEY: test
+
+  deploy:
+    name: Deploy Lambdas
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Deploy get-upload-url
+        run: |
+          cd invoice-digitizer/backend/lambda && zip get_upload_url.zip get_upload_url.py
+          aws lambda update-function-code --function-name invoice-get-upload-url --zip-file fileb://get_upload_url.zip
+      - name: Deploy ocr-processor
+        run: |
+          cd invoice-digitizer/backend/lambda
+          pip install anthropic -t ./pkg/ --quiet
+          cd pkg && zip -r ../invoice_ocr_v2.zip . && cd ..
+          zip invoice_ocr_v2.zip invoice_ocr_v2.py
+          aws lambda update-function-code --function-name invoice-ocr-processor --zip-file fileb://invoice_ocr_v2.zip
+          rm -rf pkg invoice_ocr_v2.zip
+      - name: Deploy get-invoices
+        run: |
+          cd invoice-digitizer/backend/lambda && zip get_invoices.zip get_invoices.py
+          aws lambda update-function-code --function-name invoice-get-invoices --zip-file fileb://get_invoices.zip
+      - name: Deploy cognito-post-confirm
+        run: |
+          cd invoice-digitizer/backend/lambda && zip cognito_post_confirm.zip cognito_post_confirm.py
+          aws lambda update-function-code --function-name cognito-post-confirm --zip-file fileb://cognito_post_confirm.zip
