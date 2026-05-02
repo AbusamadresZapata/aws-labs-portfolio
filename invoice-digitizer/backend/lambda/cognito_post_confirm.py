@@ -1,11 +1,11 @@
 import boto3
 import os
 
+sns = boto3.client('sns', region_name='us-east-1')
 SNS_TOPIC_ARN = os.environ['SNS_TOPIC_ARN']
 
 
 def lambda_handler(event, context):
-    sns = boto3.client('sns', region_name='us-east-1')
     if event.get('triggerSource') != 'PostConfirmation_ConfirmSignUp':
         return event
 
