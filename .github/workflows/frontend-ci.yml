@@ -1,0 +1,31 @@
+name: Frontend CI — React build check
+
+on:
+  push:
+    branches: [main]
+    paths: ['invoice-digitizer/frontend/**']
+  pull_request:
+    branches: [main]
+    paths: ['invoice-digitizer/frontend/**']
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    name: Install + build check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: invoice-digitizer/frontend/package-lock.json
+      - name: Instalar dependencias
+        run: npm ci --prefix invoice-digitizer/frontend
+      - name: Build
+        run: npm run build --prefix invoice-digitizer/frontend
+        env:
+          REACT_APP_API_ENDPOINT: https://placeholder.execute-api.us-east-1.amazonaws.com/prod
