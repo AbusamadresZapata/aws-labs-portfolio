@@ -1,0 +1,4 @@
+pytest
+boto3
+moto[s3,dynamodb,sns]
+flake8
