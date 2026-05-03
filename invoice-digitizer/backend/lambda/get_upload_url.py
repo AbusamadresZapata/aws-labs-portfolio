@@ -9,7 +9,7 @@ s3 = boto3.client('s3', region_name='us-east-1')
 
 # AQUÍ ESTÁ EL CAMBIO: Buscamos las llaves, no los valores
 BUCKET_RAW     = os.environ.get('BUCKET_RAW')
-FRONTEND_URL   = os.environ.get('FRONTEND_URL')
+FRONTEND_URL   = os.environ.get('FRONTEND_URL', '*')
 EXPIRY_SECONDS = 300
 
 

@@ -9,7 +9,7 @@ dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 table    = dynamodb.Table('invoices')
 
 # Buscamos la LLAVE 'FRONTEND_URL' en las variables de entorno
-FRONTEND_URL = os.environ.get('FRONTEND_URL')
+FRONTEND_URL = os.environ.get('FRONTEND_URL', '*')
 
 
 class DecimalEncoder(json.JSONEncoder):
