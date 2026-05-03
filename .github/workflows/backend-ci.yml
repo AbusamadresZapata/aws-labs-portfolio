@@ -46,19 +46,19 @@ jobs:
       - name: Deploy get-upload-url
         run: |
           cd invoice-digitizer/backend/lambda && zip get_upload_url.zip get_upload_url.py
-          aws lambda update-function-code --function-name invoice-get-upload-url --zip-file fileb://get_upload_url.zip
+          aws lambda update-function-code --function-name get_upload_url_v2 --zip-file fileb://get_upload_url.zip
       - name: Deploy ocr-processor
         run: |
           cd invoice-digitizer/backend/lambda
           pip install anthropic -t ./pkg/ --quiet
           cd pkg && zip -r ../invoice_ocr_v2.zip . && cd ..
           zip invoice_ocr_v2.zip invoice_ocr_v2.py
-          aws lambda update-function-code --function-name invoice-ocr-processor --zip-file fileb://invoice_ocr_v2.zip
+          aws lambda update-function-code --function-name invoice-ocr-v2 --zip-file fileb://invoice_ocr_v2.zip
           rm -rf pkg invoice_ocr_v2.zip
       - name: Deploy get-invoices
         run: |
           cd invoice-digitizer/backend/lambda && zip get_invoices.zip get_invoices.py
-          aws lambda update-function-code --function-name invoice-get-invoices --zip-file fileb://get_invoices.zip
+          aws lambda update-function-code --function-name get_invoices_v2 --zip-file fileb://get_invoices.zip
       - name: Deploy cognito-post-confirm
         run: |
           cd invoice-digitizer/backend/lambda && zip cognito_post_confirm.zip cognito_post_confirm.py
