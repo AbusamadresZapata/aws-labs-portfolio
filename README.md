@@ -57,6 +57,7 @@ Aplicación end-to-end en producción que permite a usuarios subir fotos de reci
 ---
 
 ## 📈 Próximos Pasos
+
 - [ ] **Lab 06: Pipeline ETL**: Procesamiento de datos con S3, Glue, Athena y QuickSight.
 - [ ] **Lab 07: Disaster Recovery (DR)**: Backup automatizado y replicación multi-región.
 - [ ] **Invoice Digitizer — Mejoras**: Tests unitarios, IaC con Terraform, X-Ray tracing.
