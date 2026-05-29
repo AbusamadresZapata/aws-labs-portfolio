@@ -13,6 +13,22 @@ Aquí encontrarás laboratorios prácticos documentando el despliegue de infraes
 
 ---
 
+## ⭐ Proyecto Insignia
+
+### [Invoice Digitizer — Digitalizador Serverless de Recibos con IA](./invoice-digitizer)
+Aplicación end-to-end en producción que permite a usuarios subir fotos de recibos y facturas para extraer automáticamente sus datos (total, número, fecha, comercio, ítems) usando **AWS Textract** y **Claude AI**.
+
+* **Arquitectura:** React SPA (Amplify) → API Gateway → Lambda → Textract/Claude → DynamoDB + SNS
+* **Servicios:** Amplify Hosting, Cognito, API Gateway, Lambda (3 funciones), S3 (2 buckets event-driven), Textract, DynamoDB, SNS
+* **Características:**
+  - ✅ Autenticación con Cognito User Pool + JWT
+  - ✅ Presigned URLs para upload directo a S3 (sin overhead API Gateway)
+  - ✅ Two-layer parsing: Textract (FORMS + TABLES) + regex fallback
+  - ✅ Notificaciones por email vía SNS
+  - ✅ Dashboard con historial filtrable y polling inteligente
+
+---
+
 ## 🚀 Laboratorios Completados
 
 ### [Lab 01: Alojamiento Web Estático con S3 y CloudFront](./lab-01-s3-cloudfront)
@@ -33,21 +49,22 @@ Aquí encontrarás laboratorios prácticos documentando el despliegue de infraes
 * **Servicios:** ALB (Application Load Balancer), ASG (Auto Scaling Group), Launch Templates, Target Groups.
 * **Logro:** Configuración de escalado dinámico por CPU y recuperación automática de instancias.
 
+### [Lab 05: Seguridad + Auditoría con IAM y CloudTrail](./lab-05-security-iam)
+* **Objetivo:** Implementación de seguridad perimetral, auditoría y control de presupuestos.
+* **Servicios:** IAM Policies & Roles, CloudTrail, AWS Budgets, CloudWatch Logs.
+* **Logro:** Auditoría de principio de mínimo privilegio y trazabilidad de eventos.
+
 ---
 
 ## 📈 Próximos Pasos
-- [ ] **Lab 05: Seguridad + Auditoría**: Implementación de IAM, CloudTrail y presupuestos (Budgets).
 - [ ] **Lab 06: Pipeline ETL**: Procesamiento de datos con S3, Glue, Athena y QuickSight.
-- [ ] **Lab 07: PDF Digitizer con IA**: Uso de Textract y Lambda para conversión de documentos.
-- [ ] **Infraestructura como Código (IaC)**: Migración de despliegues manuales a Terraform.
+- [ ] **Lab 07: Disaster Recovery (DR)**: Backup automatizado y replicación multi-región.
+- [ ] **Invoice Digitizer — Mejoras**: Tests unitarios, IaC con Terraform, X-Ray tracing.
+- [ ] **Infraestructura como Código (IaC)**: Migración completa a Terraform para todos los labs.
 
 ---
 
 ## 📬 Contacto
-¿Te interesa mi perfil o quieres colaborar?
-
-* **Email:** Juanzarrechea@gmail.com
-##  Contacto
 ¿Te interesa mi perfil o quieres colaborar?
 
 * **Email:** Juanzarrechea@gmail.com
