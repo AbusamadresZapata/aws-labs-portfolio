@@ -1,0 +1,1050 @@
+INDUSTRIA COLOMBIANA DE MOTOCICLETAS YAMAHA S.A.
+NIT: 890.916.911-6
+INCOLMOTOS
+AGENTES DE RETENCIÓN DEL IVA NO RETENER IVA
+GRANDES CONTRIBUYENTES AUTORRETENEDOR DE RENTA
+YAMAHA
+RESPONSABLE DE IVA
+CENTRO DE PARTES
+FACTURA ELECTRÓNICA DE VENTA
+KM 1, ANTIGUA VIA A GIRARDOTA
+TEL:(4)309 10 FAX:(4)4-4544242 Ext 408
+No. CPFE-706253
+GIRARDOTA ANTIOQUIA
+Cite este numero para pago: 102-706253
+Señores:
+MATTHEW ANTHONY BENT NEWBALL
+Fecha y hora:
+2025-10-21
+15:54:37
+Vencimiento:
+2025-12-05
+C.C.:
+1.123.637.206
+No. Cliente:
+CL1863857
+Forma de Pago:
+Crédito
+45 días
+Medio de Pago:
+Dirección:
+BRR SARIEBAY CARRERA 16 66
+Teléfono:
+Pedido:
+Remisión: 68441
+Correo:
+raizalmotors@gmail.com
+Bodega: CEN_PARTES
+Ciudad:
+PROVIDENCIA SAN ANDRES Y PROVIDENCIA
+Vendedor: DANIEL YEPES DIEZ
+% Desc. PF:
+0
+Item
+Referencia
+Producto
+Und.
+Cantidad
+Precio / Unit.
+% Desc.
+Valor Total
+Pedido No. PV03602772 REMV+11303746:
+1
+4STE81110000
+PEDAL CAMBIOS T110E T110ED
+UNIDAD
+1.00
+125,300.00
+5.00
+119,035.00
+2
+36LF16290000
+COMPLEMENTO G/FANGO TRAS RX100
+UNIDAD
+2.00
+16,134.00
+32,268.00
+Resolucion de facturaci ón 18764085291047 13/12/24 al 13/12/26 para Factura Electronica del CPFE-600001 al CPFE-1300000
+3
+4YSF8311W000
+GUARDAPIERNA IZO SIN PINTAR T110
+UNIDAD
+4.00
+94,622.00
+378,488.00
+Pedido No. PV03614786 REMV+11303747:
+4
+902010638000
+ARANDELA PLANA STOP YBR250
+UNIDAD
+1.00
+504,00
+5.00
+479.00
+Pedido No. PV03620978 REMV+11303749:
+5
+21CF1730W100
+JGO TAPA LAT TRAS SIN PINTAR FZ16(F1731-F1741 PAR)
+UNIDAD
+2.00
+46,555.00
+93,110.00
+6
+BK3F17370000
+DIAPASON GOTA CEPILLA 25MM BK3
+UNIDAD
+30.00
+1,500.00
+5.00
+42,750.00
+7
+BA4TAPASLATO
+JGO TAPAS LATERALES YW125 FI
+UNIDAD
+5.00
+27,000.00
+135,000.00
+8
+B6YH33710100
+PITO NMAX ABS BBE1
+UNIDAD
+2.00
+66,900.00
+133,800.00
+9
+B6HH47400000
+LUZ PLACA NMAX ABS BBE1
+UNIDAD
+2.00
+34,118.00
+68,236.00
+10
+B6HF74A80000
+TAPA PROTECTOR NMAX ABS BBE1
+UNIDAD
+2.00
+8,900.00
+5.00
+16,910.00
+11
+B6HF74840000
+TAPETE 2 REPOSAPIE SUP DER NMAX CONNECTED
+UNIDAD
+3.00
+8,400.00
+5.00
+23,940.00
+12
+B6HF74830000
+TAPETE 1 REPOSAPIE SUP IZQ NMAX CONNECTED
+UNIDAD
+4.00
+11,600.00
+5.00
+44,080.00
+13
+B6HF62400000
+JGO MANILAR NMAX ABS BBE1
+UNIDAD
+3.00
+9,400.00
+28,200.00
+14
+B6HF1741W000
+TAPA LAT INF DER SIN PINTAR NMAX ABS BBE1
+UNIDAD
+1.00
+64,000.00
+64,000.00
+15
+B6HF1731W000
+TAPA LAT INF IZQ SIN PINTAR NMAX ABS BBE1
+UNIDAD
+1.00
+60,400.00
+60,400.00
+16
+B6HF171MW000
+MUELLE TAPA LAT 2 DER NMAX ABS BBE1
+UNIDAD
+1.00
+30,500.00
+30,500.00
+17
+B6HF171LW000
+MUELLE TAPA LAT IZQ NMAX ABS BBE1
+UNIDAD
+2.00
+38,000.00
+76,000.00
+18
+B6HE76740000
+BUJE NMAX ABS BBE1
+UNIDAD
+2.00
+20,588.00
+5.00
+39,117.00
+19
+B6HE44111000
+CAJA FILTRO AIRE NMAX ABS BBE1
+UNIDAD
+7.00
+42,857.00
+299,999.00
+20
+B6HE13510000
+EMPAQUE CILINDRO NMAX ABS BBE1
+UNIDAD
+2.00
+4,538.00
+5.00
+8,622.00
+21
+B65E66260000
+RESORTE CLUTCH NMAX ABS BBE1
+UNIDAD
+6.00
+1,681.00
+5.00
+9,582.00
+22
+990091540000
+PIN CAND EJE CRANCK YD110/T115
+UNIDAD
+10.00
+756.00
+5.00
+7,182.00
+23
+904461380300
+MANGUERA PROTECTOR YW125/09
+UNIDAD
+20.00
+1,345.00
+26,900.00
+24
+5YYH21311000
+CORREA BATERIA 5P42
+UNIDAD
+10.00
+1,681.00
+5.00
+15,969.00
+25
+5UAF62400100
+JGO MANILAR YW125 4B41/4B51
+UNIDAD
+3.00
+7,899.00
+23,697.00
+26
+5TYE55700100
+EMBRAGUE ARRANQUE YW125/09
+UNIDAD
+8.00
+140,000.00
+1,120,000.00
+27
+5S9H43010200
+FAROLA PEQUEÑA YW125/09
+UNIDAD
+4.00
+38,655.00
+154,620.00
+28
+5S9F63510100
+CABLE FRENO TRAS YW125/09
+UNIDAD
+5.00
+25,714.00
+128,570.00
+29
+5S9F51900000
+PINON VELOCIMETRO YW125/09
+UNIDAD
+2.00
+71,933.00
+143.866,00
+30
+5S9F478E0100
+CABLE SEGURO SILLIN YW125/09
+UNIDAD
+2.00
+21,261.00
+5.00
+40,396.00
+31
+5S9F34610200
+SOPORTE MANUBRIO YW125/09
+UNIDAD
+2.00
+63,025.00
+126,050.00
+32
+5S9F31410000
+RESORTE SUSPENSION YW125/09
+UNIDAD
+6.00
+12,353.00
+5.00
+70,412.00
+33
+5S9F13980000
+PORTACASCO YW125/09
+UNIDAD
+18.00
+3,950.00
+5.00
+67,545.00
+Pronto Pago:
+Cant. Total:
+Bruto
+HASTA EL 26-10-2025 TOME UN DESCUENTO DEL 3 POR UN VALOR DE 196.241 PAGUE SOLAMENTE 6,345,114.00
+Descuento
+Cant. Det:
+Subtotal
+Son:
+MILLONES QUINIENTOS CUARENTA Y UN MIL TRESCIENTOS CINCUENTA Y CINCO COP
+IVA
+Proveedor tecnológico: VSDC sas Nit 811.026.198 811026198numrotefevp
+Impuesto al consumo
+Sigue...
+Comprador aceptante: He recibido real
+materialmente, las mercancías descritas.
+TOTAL A PAGAR
+6,541,355.00
+Manual del
+usuario llantas
+Impuesto
+Base
+Firma autorizada INCOLMOTOS YAMAHA S.A.
+Firma
+Valor Impto
+Los bienes relacionados en la presente factura de venta, siempre cuando se trate de instrumentos y/o equipos musicales tendrán un termino de garantía de un año contado partir de la emisión firma de la misma, su
+reconocimiento estará sujeto que el serial del instrumento y/o equipo corresponda al que se indica en la factura siempre que se cumplan por parte del comprador las recomendaciones de uso dadas por el vendedor. Los
+repuestos servicios, trátese de equipos de audio, Imusica y/o motocicletas, asi como el servicio técnico de aquellos, relacionados en la presente factura de venta, tendrán un término de garantía de tres meses contados
+a
+partir de la emisión firma de la misma, su reconocimiento estará sujeto que la pieza sea manipulada, ensamblada, e instalada en los centros de servicio técnico directos de Incolmotos Yamaha S.A., 0 los autorizados por
+el mismo, 0 que el servicio se realice en estos. Para la instalación, mantenimiento su uso, favor acercarse a un centro de servicio autorizado. La garantía para los productos souvenir será de un mes. Las presentes
+condiciones se consideran entendidas aceptadas irrevocablemente con la firma de esta factura de venta, la cual deberá en todo caso ser presentada para el reconocimiento de la garantía. En lo relacionado con la garantía
+de las motocicletas, esta se encuentra descrita en el Manual del Propietario. En caso de comprar una motocicleta, autorizo expresamente al vendedor para que me sea enviado el manual de propietario garantía al correo
+electrónico reportado en esta factura, del cual certifico su validez.
+Señor DESTINATARIO y/o SUSCRIPTOR DE LA AUTORIZACIÓN: Incolmotos-Yamaha S.A es el responsable del Tratamiento de datos utilizará los datos consignados por Usted en el formulario, para suministrarle de forma
+periódica, todo tipo de información comercial relacionada con los productos servicios que comercializa, las ofertas, promociones demás actividades, a través de Incolmotos Yamaha S.A., Yamaha Motor Co., su Red de
+Distribución 0 sus encargados, mientras la actividad comercial sè encuentre en operación, También podrá ser trasferida a terceras personas, nacionales 0 extranjeras -naturales jurídicas- en calidad de encargados del
+tratamiento, con las cuales Incolmotos Yamaha contrate actividades de cualquier tipo, quienes darán la base de datos el uso informado en la presente. Se le informa que Usted como titular tiene los derechos consagrados en el
+artículo 8 de la ley 1581 de 2012: A conocer, actualizar rectificar sus datos. B. solicitar prueba de su autorización. C. ser informado sobre el uso que se le ha dado a sus datos. D. presentar quejas ante la SIC por infracciones. E.
+revocar su autorización de acuerdo con el procedimiento creado por la SIC Acceder gratuitamente sus datos personales. Dirección: Km. 20 Autopista Norte, costado oriental, vía Girardota, Antioquia. Nit: 890.916.911.
+Autorizo Incolmotos-Yamaha S.A. mientras duren nuestras relaciones comerciales, compartir mi información personal con las entidades financieras comerciales con las que tenga una alianza comercial, con el propósito de
+que estas puedan consultarme, actualizar y/o poblar mis datos en bases de datos legitimas de cualquier naturaleza y contactarme para el ofrecimiento de productos financieros relacionados con dicha alianza.
+CUFE: 4d6d940a0d64ca459b988c2e9a756879872b57d313ce923b2b1a06e9e7ac4a54fc1c4be56cb00cf7a14b52e12f9d63c
+REPRESENTACIÓN GRÁFICA FACTURA ELECTRÓNICA
+Pagina de 2
+NumRot Version:FEVP92/ FIYx20250905.ps
+INDUSTRIA COLOMBIANA DE MOTOCICLETAS YAMAHA S.A.
+NIT: 890.916.911-6
+INCOLMOTOS
+AGENTES DE RETENCIÓN DEL IVA NO RETENER IVA
+GRANDES CONTRIBUYENTES AUTORRETENEDOR DE RENTA
+YAMAHA
+RESPONSABLE DE IVA
+CENTRO DE PARTES
+FACTURA ELECTRÓNICA DE VENTA
+KM 1, ANTIGUA VIA A GIRARDOTA
+TEL:(4)309 10 FAX:(4)4-4544242 Ext 408
+No. CPFE-706253
+GIRARDOTA ANTIOQUIA
+Cite este numero para pago: 102-706253
+Señores:
+MATTHEW ANTHONY BENT NEWBALL
+Fecha y hora:
+2025-10-21
+15:54:37
+Vencimiento:
+2025-12-05
+C.C.:
+1.123.637.206
+No. Cliente: CL1863857
+Forma de Pago:
+Crédito
+45 días
+Medio de Pago:
+Dirección:
+BRR SARIEBAY CARRERA 16 66
+Teléfono:
+Pedido:
+Remisión: 68441
+Correo:
+raizalmotors@gmail.com
+Bodega: CEN_PARTES
+Ciudad:
+PROVIDENCIA SAN ANDRES Y PROVIDENCIA
+Vendedor: DANIEL YEPES DIEZ
+% Desc. PF: 0
+Item
+Referencia
+Producto
+Und.
+Cantidad
+Precio / Unit.
+% Desc.
+Valor Total
+34
+5S9E55240000
+PINON ARRANQUE YW125/09
+UNIDAD
+7.00
+53,529.00
+374,703.00
+35
+5S9E54610000
+EMPAQUE CARCAZA YW125
+UNIDAD
+10.00
+3,300.00
+33,000.00
+36
+5MLF62410100
+MANILAR IZQ YW125 4B41/4B51
+UNIDAD
+3.00
+5,630.00
+16,890.00
+Resolucion de facturaci ón 18764085291047 13/12/24 al 13/12/26 para Factura Electronica del CPFE-600001 al CPFE-1300000
+37
+5MLF47800000
+CHAPA SILLIN YW100
+UNIDAD
+2.00
+34,286.00
+68,572.00
+38
+58PF47314000
+FORRO SILLIN NEGRO 2DU3
+UNIDAD
+10.00
+40,600.00
+406,000.00
+39
+58PF110G0100
+CONDUCTO2 YW125 58P4
+UNIDAD
+5.00
+13,613.00
+68,065.00
+40
+54PE39150000
+FILTRO TANO GAS FINO B281
+UNIDAD
+1.00
+83,000.00
+5.00
+78,850.00
+41
+54BE11810000
+EMPAQUE CULATA FZ-16 45D3
+UNIDAD
+4.00
+7,479.00
+29,916.00
+42
+46PF58721000
+MANGUERA FRENO YW125DX
+UNIDAD
+1.00
+97,143.00
+5.00
+92,286.00
+43
+45DF47301000
+SILLIN FZ16 45D6
+UNIDAD
+1.00
+105,600.00
+5.00
+100,320.00
+44
+3NXF73110000
+GATO LATERAL V80/T110
+UNIDAD
+3.00
+31,500.00
+94,500.00
+45
+3HBF31450000
+RETENEDOR SUSP RX115S/YBR125/NMAX
+UNIDAD
+6.00
+17,059.00
+102,354.00
+46
+2PHF62460000
+TAPON MANUBRIO IZO NMAX ABS BBE1
+UNIDAD
+6.00
+3,445.00
+20,670.00
+47
+2JSF63010000
+CABLE ACELERADOR BA41/51
+UNIDAD
+4.00
+74,370.00
+297,480.00
+48
+2DPH39220000
+MANIGUETA FRENO N-MAX BC21
+UNIDAD
+2.00
+26,303.00
+52,606.00
+49
+2DPF74840000
+TAPETE 2 REPOSAPIE SUP DER NMAX
+UNIDAD
+4.00
+6,050.00
+24,200.00
+50
+2DPF74830000
+TAPETE 1 REPOSAPIE SUP IZQ NMAX
+UNIDAD
+4.00
+11,700.00
+46,800.00
+51
+2DPF71110000
+GATO CENTRAL N-MAX
+UNIDAD
+1.00
+101,176.00
+101,176.00
+52
+2DPF62410000
+MANILAR IZQ N-MAX/YZF-R3/MT-03/X-MAX
+UNIDAD
+3.00
+7,479.00
+22,437.00
+53
+2DPE76230000
+LEVA SOPORTE N-MAX
+UNIDAD
+2.00
+31,849.00
+63,698.00
+54
+2DPE76110000
+DISCO FIJADOR POLEA N-MAX
+UNIDAD
+2.00
+37,395.00
+74,790.00
+55
+2DPE11810000
+EMPAOUE CULATA N-MAX/YZFR15 V3/MT15
+UNIDAD
+2.00
+10,420.00
+20,840.00
+56
+24PF63120100
+CABLE ACELERADOR YW125/09
+UNIDAD
+5.00
+28,571.00
+142,855.00
+57
+24PF63110000
+CABLE ACELERADOR YW125/09
+UNIDAD
+5.00
+38,600.00
+193,000.00
+58
+21CH39720100
+COMANDO LUCES FZ-16
+UNIDAD
+1.00
+71,429.00
+71,429.00
+59
+21CH39632000
+COMANDO DER FZ-16 45D6
+UNIDAD
+1.00
+54,286.00
+54,286.00
+60
+21CH39630100
+COMANDO DERECHO FZ-16
+UNIDAD
+1.00
+48,067.00
+48,067.00
+61
+21CH25013000
+SUITCHE ENCENDIDO FZ-16
+UNIDAD
+2.00
+53,400.00
+106,800.00
+Pronto Pago:
+Cant. Total:
+Bruto
+Descuento
+Cant. Det:
+Subtotal
+Son:
+IVA
+Proveedor tecnológico: VSDC sas Nit 811.026.198 811026198numrotefevp
+Impuesto al consumo
+Sigue...
+Comprador aceptante: He recibido real
+materialmente, las mercancías descritas.
+TOTAL A PAGAR
+Manual del
+usuario llantas
+Impuesto
+Base
+Firma autorizada INCOLMOTOS YAMAHA S.A.
+Firma
+Valor Impto
+Los bienes relacionados en la presente factura de venta, siempre cuando se trate de instrumentos y/o equipos musicales tendrán un termino de garantía de un año contado partir de la emisión firma de la misma, su
+reconocimiento estará sujeto que el serial del instrumento y/o equipo corresponda al que se indica en la factura siempre que se cumplan por parte del comprador las recomendaciones de uso dadas por el vendedor. Los
+repuestos servicios, trátese de equipos de audio, musical y/o motocicletas, así como el servicio técnico de aquellos, relacionados en la presente factura de venta, tendrán un término de garantía de tres meses contados al
+partir de la emisión firma de la misma, su reconocimiento estará sujeto que la pieza sea manipulada, ensamblada, e instalada en los centros de servicio técnico directos de Incolmotos Yamaha S.A., 0 los autorizados por
+el mismo, 0 que el servicio se realice en estos. Para la instalación, mantenimiento su uso, favor acercarse a un centro de servicio autorizado. La garantía para los productos souvenir será de un mes. Las presentes
+condiciones se consideran entendidas aceptadas irrevocablemente con la firma de esta factura de venta, la cual deberá en todo caso ser presentada para el reconocimiento de la garantía. En lo relacionado con la garantía
+de las motocicletas, esta se encuentra descrita en el Manual del Propietario. En caso de comprar una motocicleta, autorizo expresamente al vendedor para que me sea enviado el manual de propietario garantía al correo
+electrónico reportado en esta factura, del cual certifico su validez.
+Señor DESTINATARIO y/o SUSCRIPTOR DE LA AUTORIZACIÓN: Incolmotos-Yamaha S.A es el responsable del Tratamiento de datos utilizará los datos consignados por Usted en el formulario, para suministrarle de forma
+periódica, todo tipo de información comercial relacionada con los productos servicios que comercializa, las ofertas, promociones demás actividades, través de Incolmotos Yamaha S.A., Yamaha Motor Co., su Red de
+Distribución 0 sus encargados, mientras la actividad comercial se encuentre en operación, También podrá ser trasferida a terceras personas, nacionales 0 extranjeras -naturales jurídicas- en calidad de encargados del
+tratamiento, con las cuales Incolmotos Yamaha contrate actividades de cualquier tipo, quienes darán la base de datos el uso informado en la presente. Se le informa que Usted como titular tiene los derechos consagrados en el
+artículo 8 de la ley 1581 de 2012: A conocer, actualizar rectificar sus datos. B. solicitar prueba de su autorización. C. ser informado sobre el uso que se le ha dado sus datos. D. presentar quejas ante la SIC por infracciones. E.
+revocar su autorización de acuerdo con el procedimiento creado por la SIC Acceder gratuitamente sus datos personales. Dirección: Km. 20 Autopista Norte, costado oriental, vía Girardota, Antioquia. Nit: 890.916.911.
+Autorizo Incolmotos-Yamaha S.A. mientras duren nuestras relaciones comerciales, compartir mi información personal con las entidades financieras comerciales con las que tenga una alianza comercial, con el propósito de
+que estas puedan consultarme, actualizar y/o poblar mis datos en bases de datos legitimas de cualquier naturaleza y contactarme para el ofrecimiento de productos financieros relacionados con dicha alianza.
+CUFE: 4d6d940a0d64cca459b988c2e9a756879872b57d313ce923b2b1a06e9e7ac4a54fc1c4be56cb00cf7a14b52e12f9d63
+REPRESENTACIÓN GRÁFICA FACTURA ELECTRÓNICA
+Pagina de 2
+NumRot Version:FEVP92/ FlYx20250905.ps
+INDUSTRIA COLOMBIANA DE MOTOCICLETAS YAMAHA S.A.
+NIT: 890.916.911-6
+INCOLMOTOS
+AGENTES DE RETENCIÓN DEL IVA NO RETENER IVA
+GRANDES CONTRIBUYENTES AUTORRETENEDOR DE RENTA
+YAMAHA
+RESPONSABLE DE IVA
+CENTRO DE PARTES
+FACTURA ELECTRÓNICA DE VENTA
+KM 1, ANTIGUA VIA A GIRARDOTA
+TEL:(4)309 10 FAX:(4)4-4544242 Ext 408
+No. CPFE-706253
+GIRARDOTA ANTIOQUIA
+Cite este numero para pago: 102-706253
+Señores:
+MATTHEW ANTHONY BENT NEWBALL
+Fecha y hora:
+2025-10-21
+15:54:37
+Vencimiento:
+2025-12-05
+C.C.:
+1.123.637.206
+No. Cliente: CL1863857
+Forma de Pago:
+Crédito
+45 días
+Medio de Pago:
+Dirección:
+BRR SARIEBAY CARRERA 16 3 66
+Teléfono:
+Pedido:
+Remisión: 68441
+Correo:
+raizalmotors@gmail.com
+Bodega: CEN_PARTES
+Ciudad:
+PROVIDENCIA SAN ANDRES Y PROVIDENCIA
+Vendedor: DANIEL YEPES DIEZ
+% Desc. PF:
+0
+Item
+Referencia
+Producto
+Und.
+Cantidad
+Precio / Unit.
+% Desc.
+Valor Total
+62
+21CF45002000
+LLAVE PASO GAS /FAZER-16/FZ-16
+UNIDAD
+2.00
+33,361.00
+66,722.00
+63
+21CE34400100
+FILTRO ACEITE 1 FZ-16
+UNIDAD
+4.00
+9,580.00
+38,320.00
+Resolucion de facturaci ón 18764085291047 13/12/24 al 13/12/26 para Factura Electronica del CPFE-600001 al CPFE-1300000
+Pronto Pago:
+Cant. Total:
+Bruto
+6,541,355.00
+HASTA EL 26-10-2025 TOME UN DESCUENTO DEL 3 POR UN VALOR DE 196.241 PAGUE SOLAMENTE 6,345,114.00
+277.00
+Descuento
+0.00
+Cant. Det:
+Subtotal
+6,541,355.00
+Son:
+****SEIS MILLONES QUINIENTOS CUARENTA Y UN MIL TRESCIENTOS CINCUENTA Y CINCO COP
+IVA
+0.00
+Proveedor tecnológico: VSDC sas Nit 811.026.198 11026198numrotefefevp
+63
+Comprador aceptante: He recibido real y
+Impuesto al consumo
+0.00
+materialmente, las mercancías descritas
+6,541,355.00
+Manual del
+usuario llantas
+TOTAL A PAGAR
+Impuesto
+0.00
+0.00
+0.00
+Base
+6,541,355.00
+0.00
+0,00
+Firma autorizada INCOLMOTOS YAMAHA S.A.
+Firma
+Valor Impto
+0.00
+0.00
+0.00
+Los bienes relacionados en la presente factura de venta, siempre cuando se trate de instrumentos y/o equipos musicales tendrán un termino de garantía de un año contado partir de la emisión firma de la misma, su
+reconocimiento estará sujeto que el serial del instrumento y/o equipo corresponda al que se indica en la factura siempre que se cumplan por parte del comprador las recomendaciones de uso dadas por el vendedor. Los
+repuestos servicios, trátese de equipos de audio, musical y/o motocicletas, así como el servicio técnico de aquellos, relacionados en la presente factura de venta, tendrán un término de garantía de tres meses contados a
+partir de la emisión firma de la misma, su reconocimiento estará sujeto que la pieza sea manipulada, ensamblada, e instalada en los centros de servicio técnico directos de Incolmotos Yamaha S.A., 0 los autorizados por
+el mismo, 0 que el servicio se realice en estos. Para la instalación, mantenimiento su uso, favor acercarse a un centro de servicio autorizado. La garantía para los productos souvenir será de un mes. Las presentes
+condiciones se consideran entendidas aceptadas irrevocablemente con la firma de esta factura de venta, la cual deberá en todo caso ser presentada para el reconocimiento de la garantía. En lo relacionado con la garantía
+de las motocicletas, esta se encuentra descrita en el Manual del Propietario. En caso de comprar una motocicleta, autorizo expresamente al vendedor para que me sea enviado el manual de propietario garantía al correo
+electrónico reportado en esta factura, del cual certifico su validez.
+Señor DESTINATARIO y/o SUSCRIPTOR DE LA AUTORIZACIÓN: Incolmotos-Yamaha S.A es el responsable de Tratamiento de datos utilizará los datos consignados por Usted en el formulario, para suministrarle de forma
+periódica, todo tipo de información comercial relacionada con los productos servicios que comercializa, las ofertas, promociones demás actividades, través de Incolmotos Yamaha S.A., Yamaha Motor Co., su Red de
+Distribución 0 sus encargados, mientras la actividad comercial se encuentre en operación, También podrá ser trasferida a terceras personas, nacionales 0 extranjeras -naturales 0 jurídicas- en calidad de encargados del
+tratamiento, con las cuales Incolmotos Yamaha contrate actividades de cualquier tipo, quienes darán la base de datos el uso informado en la presente. Se le informa que Usted como titular tiene los derechos consagrados en el
+artículo 8 de la ley 1581 de 2012: conocer, actualizar rectificar sus datos. B. solicitar prueba de su autorización. C. ser informado sobre el uso que se le ha dado a sus datos. D. presentar quejas ante la SIC por infracciones. E
+revocar su autorización de acuerdo con el procedimiento creado por la SIC F. Acceder gratuitamente a sus datos personales. Dirección: Km 20 Autopista Norte, costado oriental, vía Girardota, Antioquia. Nit: 890.916.911.
+Autorizo Incolmotos-Yamaha S.A. mientras duren nuestras relaciones comerciales, compartir mi información personal con las entidades financieras comerciales con las que tenga una alianza comercial, con el propósito de
+que estas puedan consultarme, actualizar y/o poblar mis datos en bases de datos legitimas de cualquier naturaleza y contactarme para el ofrecimiento de productos financieros relacionados con dicha alianza.
+CUFE: 4d6d940a0d64ca459b988c2e9a756879872b57d313ce923b2b1a06e9e7ac4a54fc1c4be56cb00df7a14b52e12f9d63
+REPRESENTACIÓN GRÁFICA FACTURA ELECTRÓNICA
+Pagina de 2
+NumRot Version:FEVP92/ FlYx20250905.ps
+INCOLMOTOS
+YAMAHA
+CENTRO DE PARTES
+KM 1, ANTIGUA VIA A GIRARDOTA
+TEL:(4)309 90 10 FAX:(4)4-4544242 Ext 408
+NIT: 890.916.911-6
+GIRARDOTA ANTIOQUIA
+REFERENCIA 1: 1002861027062530
+FACTURA ELECTRÓNICA DE VENTA No. CPFE-706253
+(415)7709998580220(8020)1002861027062530
+(415)7709998580220(8020)1002861027062530
+COMPRADOR
+CODIGO CLIENTE
+COMPRADOR
+CODIGO CLIENTE
+COMPRADOR
+CODIGO CLIENTE
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+BANCO
+CUENTA No.
+CHEQUE No.
+VALOR
+TOTAL EFECTIVO
+TOTAL EFECTIVO
+TOTAL CHEQUES
+TOTAL A PAGAR
+TOTAL A PAGAR
+PAGUE EN:
+VER PUNTOS DE PAGO AL RESPALDO
+PAGUE EN:
+No. DE CHEQUES
+TOTAL CHEQUES
+VER PUNTOS DE PAGO AL RESPALDO
+TOTAL A PAGAR
+NumRot Version:FEVP92/ FIYx20250905.ps
+INCOLMOTOS YAMAHA NIT: 890.916.911-6
+BANCO (EFECTIVO)
+VER PUNTOS DE PAGO AL RESPALDO
+- - CLIENTE -
+INCOLMOTOS YAMAHA NIT: 890.916.911-6
+BANCO (CHEQUE)
+INCOLMOTOS
+CENTRO DE PARTES
+YAMAHA
+KM 1, ANTIGUA VIA A GIRARDOTA
+TEL:(4)309 90 10 FAX:(4)4-4544242 Ext 408
+NIT: 890.916.911-6
+GIRARDOTA ANTIOQUIA
+REFERENCIA 1: 1002861027062530
+FACTURA ELECTRÓNICA DE VENTA No. CPFE-706253
+(415)7709998580220(8020)1002861027062530
+(415)7709998580220(8020)100286102706253C
+COMPRADOR
+CODIGO CLIENTE
+COMPRADOR
+CODIGO CLIENTE
+COMPRADOR
+CODIGO CLIENTE
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+BANCO
+CUENTA No.
+CHEQUE No.
+VALOR
+TOTAL EFECTIVO
+TOTAL EFECTIVO
+TOTAL CHEQUES
+TOTAL A PAGAR
+TOTAL A PAGAR
+PAGUE EN:
+VER PUNTOS DE PAGO AL RESPALDO
+PAGUE EN:
+No. DE CHEQUES
+TOTAL CHEQUES
+VER PUNTOS DE PAGO AL RESPALDO
+TOTAL A PAGAR
+NumRot Version:FEVP92/ FIYx20250905.ps
+INCOLMOTOS YAMAHA NIT: 890.916.911-6
+BANCO (EFECTIVO)
+VER PUNTOS DE PAGO AL RESPALDO
+CLIENTE -
+INCOLMOTOS YAMAHA NIT: 890.916.911-6
+BANCO (CHEQUE)
+CENTRO DE PARTES
+INCOLMOTOS
+YAMAHA
+KM 1, ANTIGUA VIA A GIRARDOTA
+TEL:(4)309 90 10 FAX:(4)4-4544242 Ext 408
+NIT: 890.916.911-6
+GIRARDOTA ANTIOQUIA
+REFERENCIA 1: 1002860018638570
+CUPÓN DE PAGO ANTICIPADO No. CL1863857
+(415)7709998580220(8020)1002860018638570
+(415)7709998580220(8020)1002860018638570
+COMPRADOR
+CODIGO CLIENTE
+COMPRADOR
+CODIGO CLIENTE
+COMPRADOR
+CODIGO CLIENTE
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+MATTHEW ANTHONY BENT NEWBALL
+1.123.637.206
+BANCO
+CUENTA No.
+CHEQUE No.
+VALOR
+TOTAL EFECTIVO
+TOTAL EFECTIVO
+TOTAL CHEQUES
+TOTAL A PAGAR
+TOTAL A PAGAR
+PAGUE EN:
+VER PUNTOS DE PAGO AL RESPALDO
+PAGUE EN:
+No. DE CHEQUES
+TOTAL CHEQUES
+VER PUNTOS DE PAGO AL RESPALDO
+TOTAL A PAGAR
+NumRot Version:FEVP92/ FlYx20250905.ps
+INCOLMOTOS YAMAHA NIT: 890.916.911-6
+BANCO (EFECTIVO)
+VER PUNTOS DE PAGO AL RESPALDO
+CLIENTE
+INCOLMOTOS YAMAHA NIT: 890.916.911-6
+BANCO (CHEQUE)
+COMPRADOR
+REFERENCIA
+PUEDE PAGAR ESTA FACTURA EN:
+PUEDE PAGAR ESTA FACTURA EN:
+MATTHEW ANTHONY BENT NEWBALL
+00
+BANCO AV VILLAS
+BANCO AV VILLAS
+Factura No.
+Valor
+Nota credito
+valor Pago
+fecha consig.
+BANCO BOGOTA
+Importante: Recuerde que para
+BANCO BOGOTA
+Importante: Recuerde que para
+BANCO OCCIDENTE
+acceder al descuento pronto pago
+BANCO OCCIDENTE
+acceder al descuento pronto pago
+BANCO POPULAR
+propuesto en esta factura, debe
+BANCO POPULAR
+propuesto en esta factura, debe
+BANCOLOMBIA PRINCIPAL
+cancelar con este cupon 0 a trav
+S
+BANCOLOMBIA PRINCIPAL
+cancelar con este cupon 0 a trav
+S
+BANCO ITAU CORPBANCA
+del boton de pagos PSE.
+BANCO ITAU CORPBANCA
+del boton de pagos PSE.
+BANCO DAVIVIENDA
+BANCO DAVIVIENDA
+BANCO
+CUENTA No.
+CHEQUE No.
+VALOR
+https://www.e-collect.com/customers/plus/CorredoresDaviviendaPlus.htm
+https://www.e-collect.com/customers/plus/CorredoresDaviviendaPlus.htm
+PAGA EN LINEA:
+PAGA EN LINEA:
+pse
+PAGUE AQUI
+pse
+PAGUE AQUI
+No. DE CHEQUES
+TOTAL CHEQUES
+TOTAL A PAGAR
+COMPRADOR
+REFERENCIA
+PUEDE PAGAR ESTA FACTURA EN:
+PUEDE PAGAR ESTA FACTURA EN:
+MATTHEW ANTHONY BENT NEWBALL
+00
+BANCO AV VILLAS
+BANCO AV VILLAS
+Factura No.
+Valor
+Nota credito
+valor Pago
+fecha consig.
+BANCO BOGOTA
+Importante: Recuerde que para
+BANCO BOGOTA
+Importante: Recuerde que para
+BANCO OCCIDENTE
+acceder al descuento pronto pago
+BANCO OCCIDENTE
+acceder al descuento pronto pago
+BANCO POPULAR
+propuesto en esta factura, debe
+BANCO POPULAR
+propuesto en esta factura, debe
+BANCOLOMBIA PRINCIPAL
+cancelar con este cupon 0 a trav
+S
+BANCOLOMBIA PRINCIPAL
+cancelar con este cupon 0 a trav
+S
+BANCO ITAU CORPBANCA
+del boton de pagos PSE.
+BANCO ITAU CORPBANCA
+del boton de pagos PSE.
+BANCO DAVIVIENDA
+BANCO DAVIVIENDA
+BANCO
+CUENTA No.
+CHEQUE No.
+VALOR
+https://www.e-collect.com/customers/plus/CoredoresDaviviendaPlus.htm
+https://www.e-collect.com/customers/plus/CorredoresDaviviendaPlus.htm
+PAGA EN LINEA:
+pse
+PAGA EN LINEA:
+PAGUE AQUI
+pse
+PAGUE AQUI
+No. DE CHEQUES
+TOTAL CHEQUES
+TOTAL A PAGAR
+COMPRADOR
+REFERENCIA
+PUEDE PAGAR ESTA FACTURA EN:
+PUEDE PAGAR ESTA FACTURA EN:
+MATTHEW ANTHONY BENT NEWBALL
+00
+BANCO AV VILLAS
+BANCO AV VILLAS
+Factura No.
+Valor
+Nota credito
+valor Pago
+fecha consig.
+BANCO BOGOTA
+Importante: Recuerde que para
+BANCO BOGOTA
+Importante: Recuerde que para
+BANCO OCCIDENTE
+acceder al descuento pronto pago
+BANCO OCCIDENTE
+acceder al descuento pronto pago
+BANCO POPULAR
+propuesto en esta factura, debe
+BANCO POPULAR
+propuesto en esta factura, debe
+BANCOLOMBIA PRINCIPAL
+cancelar con este cupon 0 a trav
+S
+BANCOLOMBIA PRINCIPAL
+cancelar con este cupon o a trav
+S
+BANCO ITAU CORPBANCA
+del boton de pagos PSE.
+BANCO ITAU CORPBANCA
+del boton de pagos PSE.
+BANCO DAVIVIENDA
+BANCO DAVIVIENDA
+BANCO
+CUENTA No.
+CHEQUE No.
+VALOR
+https://www.e-collect.com/customers/plus/CorredoresDaviviendaPlus.htm
+https://www.e-collect.com/customers/plus/CoredoresDaviviendaPlus.htm
+PAGA EN LINEA:
+pse
+PAGA EN LINEA:
+PAGUE AQUI
+pse
+PAGUE AQUI
+No. DE CHEQUES
+TOTAL CHEQUES
+TOTAL A PAGAR

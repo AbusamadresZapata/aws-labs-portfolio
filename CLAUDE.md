@@ -2,11 +2,15 @@
 
 ## Quién soy
 
-Juan Sebastian Arrechea, Ingeniero de Automatización, AWS Solutions Architect Associate (SAA-C03) en progreso. Experiencia sólida en Python y AWS; aprendiendo arquitectura de soluciones en la nube para entornos industriales y de IoT. Portfolio técnico y bitácora de aprendizaje AWS.
+Juan Sebastian Arrechea, Ingeniero de Automatización y Tecnólogo en Gestión Agroempresarial (SENA). AWS Solutions Architect Associate (SAA-C03) en progreso. Experiencia sólida en Python y AWS; aprendiendo arquitectura de soluciones en la nube para entornos industriales y de IoT. Interés activo en proyectos productivos agropecuarios y su análisis financiero. Portfolio técnico y bitácora de aprendizaje AWS.
 
-## Proyecto principal
+## Proyectos
 
 **Invoice Digitizer** — app serverless en producción. Detalles de arquitectura, reglas por capa y comandos en `.claude/rules/`.
+
+**Yamaha Invoice Structurer** — herramienta local Python independiente. Digitaliza facturas de Incolmotos Yamaha (PDF multi-página) → CSV estructurado por pedido. Detalles en `.claude/rules/yamaha-structurer.md`.
+
+> Estos dos proyectos son **independientes**. No comparten código, pipeline ni infra.
 
 ---
 
